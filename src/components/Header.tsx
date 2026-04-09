@@ -23,7 +23,7 @@ export default function Header() {
   const navItems = [
     { href: "/", label: t('nav.about'), icon: Home },
     { href: "/experiencias", label: t('nav.experiences'), icon: Plane },
-    { href: "/pasion", label: t('nav.football_passion'), icon: Volleyball },
+    { href: "/pasion-futbolera", label: t('nav.football_passion'), icon: Volleyball },
     { href: "/armatuaventura", label: t('nav.build_adventure'), icon: AtSign },
   ];
 

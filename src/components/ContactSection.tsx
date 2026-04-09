@@ -65,7 +65,7 @@ export default function ContactSection() {
             <div className="space-y-8">
               {[
                 { icon: Phone, label: t('info.phone.label'), val: "+52 55 1234 1234", sub: t('info.phone.hours'), color: "bg-yellow-400" },
-                { icon: Mail, label: t('info.email.label'), val: "contacto@vivatrip.com.mx", sub: t('info.email.response'), color: "bg-[#ff00ff]" },
+                { icon: Mail, label: t('info.email.label'), val: "info@tripcraftmx.com", sub: t('info.email.response'), color: "bg-[#ff00ff]" },
                 { icon: MapPin, label: t('info.location.label'), val: t('info.location.city'), sub: t('info.location.appointment'), color: "bg-violet-500" }
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-6 group">

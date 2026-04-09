@@ -41,7 +41,7 @@ export function EmptyCart() {
                         className="flex items-center justify-center gap-3 bg-[#212121] text-white py-5 rounded-sm font-black uppercase text-[10px] tracking-[0.2em] hover:bg-[#03A9F4] transition-all shadow-lg active:scale-95">
                         {t('explore_destinations')}
                     </Link>
-                    <Link href="/pasion"
+                    <Link href="/pasion-futbolera"
                         className="flex items-center justify-center gap-3 border-2 border-gray-200 text-[#212121] py-5 rounded-sm font-black uppercase text-[10px] tracking-[0.2em] hover:border-[#03A9F4] transition-all active:scale-95">
                         {t('football_passion')}
                     </Link>

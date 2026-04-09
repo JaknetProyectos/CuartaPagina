@@ -8,14 +8,14 @@ export async function POST(req: Request) {
     const data = await req.json();
     const { nombre, email, telefono, personas, experiencia_title, detalles, id } = data;
 
-    const shortId = id ? id.substring(0, 8).toUpperCase() : "VIVA";
+    const shortId = id ? id.substring(0, 8).toUpperCase() : "TRIP CRAFT MX";
     // Enlaces mantenidos para funcionalidad futura o actual
-    const statusLink = `https://vivamytrip.com/pagatuaventura?quoteId=${id}`;
-    const adminEditLink = `https://vivamytrip.com/admin/cotizaciones/${id}`;
+    const statusLink = `https://tripcraftmx.com/pagatuaventura?quoteId=${id}`;
+    const adminEditLink = `https://tripcraftmx.com/admin/cotizaciones/${id}`;
 
     // 1. Correo para el Cliente (Estilo Cyber-Luxury: Magenta-Violeta-Amarillo)
     await resend.emails.send({
-      from: "Viva Trip <contacto@vivamytrip.com>",
+      from: "Trip Craft MX <info@tripcraftmx.com>",
       to: email,
       subject: `Solicitud Recibida: ${experiencia_title}`,
       html: `
@@ -46,9 +46,9 @@ export async function POST(req: Request) {
 
           <div style="background: #0d0221; padding: 40px; text-align: center;">
             <p style="margin: 0; font-size: 10px; letter-spacing: 2px; font-weight: 900; text-transform: uppercase; color: rgba(255,255,255,0.4);">
-              &copy; ${new Date().getFullYear()} VIVA MY TRIP MÉXICO
+              &copy; ${new Date().getFullYear()} TRIP CRAFT MX
             </p>
-            <a href="https://vivamytrip.com" style="display: inline-block; margin-top: 15px; color: #ffcc00; font-weight: bold; text-decoration: none; font-size: 12px; letter-spacing: 1px;">VIVAMYTRIP.COM</a>
+            <a href="https://tripcraftmx.com" style="display: inline-block; margin-top: 15px; color: #ffcc00; font-weight: bold; text-decoration: none; font-size: 12px; letter-spacing: 1px;">tripcraftmx.com</a>
           </div>
         </div>
       `
@@ -56,8 +56,8 @@ export async function POST(req: Request) {
 
     // 2. Correo para el Admin (Estilo Dark High-Alert con Magenta/Amarillo)
     await resend.emails.send({
-      from: "Sistema Viva Trip <contacto@vivamytrip.com>",
-      to: "contacto@vivamytrip.com",
+      from: "Sistema Trip Craft MX <info@tripcraftmx.com>",
+      to: "info@tripcraftmx.com",
       subject: `🚨 NUEVA COTIZACIÓN: ${nombre} - ${experiencia_title}`,
       html: `
         <div style="font-family: 'Segoe UI', sans-serif; background-color: #0d0221; color: #ffffff; padding: 40px; border-radius: 20px; border: 2px solid #ff00ff; max-width: 600px; margin: auto;">

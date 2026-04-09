@@ -70,7 +70,7 @@ export default function ErrorScreen({
 
                 {/* FOOTER DE SOPORTE */}
                 <p className="mt-8 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                    ¿Necesitas ayuda? <a href="mailto:contacto@vivamytrip.com" className="text-[#03A9F4] underline decoration-2 underline-offset-4">Contacta a soporte</a>
+                    ¿Necesitas ayuda? <a href="mailto:info@tripcraftmx.com" className="text-[#03A9F4] underline decoration-2 underline-offset-4">Contacta a soporte</a>
                 </p>
             </div>
         </div>

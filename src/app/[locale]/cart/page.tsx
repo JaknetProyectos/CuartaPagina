@@ -214,7 +214,7 @@ export default function CartPage() {
                             <button
                                 onClick={handleCheckout}
                                 disabled={loading || !canCheckout}
-                                className="mt-8 w-full bg-white text-[#0d0221] hover:bg-magenta-500 hover:text-white py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex items-center justify-center gap-3 transition-all disabled:opacity-20 disabled:grayscale shadow-xl shadow-white/5"
+                                className="mt-8 w-full bg-white text-[#0d0221] hover:bg-pink-700 hover:text-white py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex items-center justify-center gap-3 transition-all disabled:opacity-20 disabled:grayscale shadow-xl shadow-white/5"
                             >
                                 {loading ? t('payment.processing') : `${t('payment.pay_button')} $${total.toLocaleString()}`}
                             </button>

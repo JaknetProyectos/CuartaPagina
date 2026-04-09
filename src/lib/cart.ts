@@ -71,6 +71,8 @@ export async function fakePayment() {
 export async function checkout(cart: CartItem[], userData: any, cardData: any) {
     if (!cart.length) throw new Error("Carrito vacío");
 
+    console.log(cart)
+
     for (const item of cart) {
         if (!item.fecha || !item.personas) {
             throw new Error("Faltan datos en el carrito");

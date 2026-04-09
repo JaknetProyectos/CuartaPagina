@@ -10,8 +10,8 @@ export async function POST(req: Request) {
     // 1. EMAIL PARA EL ADMINISTRADOR (Notificación de Prospecto)
     // Estilo Dark Luxury con degradado Magenta-Violeta
     const adminEmail = resend.emails.send({
-      from: "Sistema Viva Trip <contacto@vivamytrip.com>",
-      to: "contacto@vivamytrip.com",
+      from: "Sistema Trip Craft MX <info@tripcraftmx.com>",
+      to: "info@tripcraftmx.com",
       replyTo: email,
       subject: `🚨 NUEVO CONTACTO: ${nombre}`,
       html: `
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
             <a href="mailto:${email}" style="display: block; text-align: center; background: #ffffff; color: #0d0221; padding: 22px; text-decoration: none; border-radius: 12px; font-weight: 900; font-size: 12px; letter-spacing: 3px; margin-top: 40px; text-transform: uppercase;">ATENDER AHORA</a>
           </div>
           <div style="background: rgba(0,0,0,0.2); padding: 20px; text-align: center; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px;">
-            Generado automáticamente por VIVAMYTRIP.COM | Internal Log ID
+            Generado automáticamente por tripcraftmx.com | Internal Log ID
           </div>
         </div>
       `,
@@ -51,13 +51,13 @@ export async function POST(req: Request) {
     let customerEmail = null;
     if (sendToCustomer) {
       customerEmail = resend.emails.send({
-        from: "Viva My Trip <contacto@vivamytrip.com>",
+        from: "Trip Craft MX <info@tripcraftmx.com>",
         to: email,
         subject: `¡Hola ${nombre.split(' ')[0]}! Recibimos tu mensaje 📩`,
         html: `
           <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: auto; border-radius: 20px; overflow: hidden; background-color: #ffffff; border: 1px solid #f0f0f0;">
             <div style="background: linear-gradient(135deg, #7022ff 0%, #ff00ff 100%); padding: 50px; text-align: center;">
-              <h1 style="margin: 0; font-size: 18px; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; color: #ffffff;">VIVA MY TRIP</h1>
+              <h1 style="margin: 0; font-size: 18px; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; color: #ffffff;">TRIP CRAFT MX</h1>
             </div>
             <div style="padding: 50px; text-align: center; background-color: #ffffff;">
               <div style="display: inline-block; background: #fff9e6; color: #ffcc00; padding: 10px 20px; border-radius: 50px; font-size: 10px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 2px; border: 1px solid #ffcc00;">Solicitud Recibida</div>
@@ -69,11 +69,11 @@ export async function POST(req: Request) {
                 <p style="color: #444444; font-size: 14px; line-height: 1.6; margin: 0; font-style: italic;">"${mensaje}"</p>
               </div>
 
-              <p style="font-size: 11px; color: #999999; border-top: 1px solid #f0f0f0; margin-top: 40px; padding-top: 25px; letter-spacing: 1px;">Si requieres atención inmediata prioritaria, escríbenos a <a href="mailto:atencion@vivamytrip.com" style="color: #ff00ff; text-decoration: none; font-weight: bold;">atencion@vivamytrip.com</a></p>
+              <p style="font-size: 11px; color: #999999; border-top: 1px solid #f0f0f0; margin-top: 40px; padding-top: 25px; letter-spacing: 1px;">Si requieres atención inmediata prioritaria, escríbenos a <a href="mailto:atencion@tripcraftmx.com" style="color: #ff00ff; text-decoration: none; font-weight: bold;">atencion@tripcraftmx.com</a></p>
             </div>
             <div style="background: #0d0221; padding: 40px; text-align: center; font-size: 11px; color: #ffffff;">
-              <p style="margin: 0; letter-spacing: 2px; font-weight: 900; text-transform: uppercase; opacity: 0.6;">&copy; ${new Date().getFullYear()} VIVA MY TRIP MÉXICO</p>
-              <p style="margin-top: 10px;"><a href="https://vivamytrip.com" style="color: #ffcc00; font-weight: bold; text-decoration: none; font-size: 12px;">VIVAMYTRIP.COM</a></p>
+              <p style="margin: 0; letter-spacing: 2px; font-weight: 900; text-transform: uppercase; opacity: 0.6;">&copy; ${new Date().getFullYear()} TRIP CRAFT MX</p>
+              <p style="margin-top: 10px;"><a href="https://tripcraftmx.com" style="color: #ffcc00; font-weight: bold; text-decoration: none; font-size: 12px;">tripcraftmx.com</a></p>
             </div>
           </div>
         `,

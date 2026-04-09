@@ -82,7 +82,7 @@ export default function Footer() {
             <ul className="space-y-5 text-[11px] font-black uppercase tracking-[0.2em]">
               <li>
                 <Link href="/#contactanos" className="text-white/60 hover:text-yellow-400 transition-colors block">
-                  contacto@vivatrip.com
+                  info@tripcraftmx.com
                 </Link>
               </li>
               <li>

@@ -15,8 +15,8 @@ export async function POST(req: Request) {
     const customerEmail = checkoutInfo.billingAddress.email;
 
     await resend.emails.send({
-      from: "Trip Craft MX <contacto@vivamytrip.com>",
-      to: [customerEmail, "contacto@vivamytrip.com"],
+      from: "Trip Craft MX <info@tripcraftmx.com>",
+      to: [customerEmail, "info@tripcraftmx.com"],
       subject: `Confirmación de Compra`,
       html: `
     <!DOCTYPE html>
@@ -149,7 +149,7 @@ export async function POST(req: Request) {
         </div>
 
         <div class="footer">
-          &copy; ${new Date().getFullYear()} TRIP CRAFT MX | <a href="https://vivamytrip.com" class="support-link">VIVAMYTRIP.COM</a><br>
+          &copy; ${new Date().getFullYear()} TRIP CRAFT MX | <a href="https://tripcraftmx.com" class="support-link">tripcraftmx.com</a><br>
           <p style="margin-top: 15px; font-size: 8px; opacity: 0.5;">Este es un comprobante oficial de tu reserva digital.</p>
         </div>
       </div>
