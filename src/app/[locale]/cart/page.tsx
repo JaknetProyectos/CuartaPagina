@@ -19,36 +19,18 @@ export default function CartPage() {
     const [ticket, setTicket] = useState<any[] | null>(null);
     const [paymentError, setPaymentError] = useState<string | null>(null);
 
-    // Estado del Formulario
-    // const [form, setForm] = useState({
-    //     nombre: "", email: "", telefono: "", pais: "México",
-    //     calle: "", apartamento: "", ciudad: "", estado: "", cp: "",
-    // });
-
-    // // Estado de la Tarjeta
-    // const [card, setCard] = useState({
-    //     number: "", name: "", month: "", year: "", cvv: "",
-    // });
-
+    //Estado del Formulario
     const [form, setForm] = useState({
-        nombre: "Juan Pérez Test", 
-        email: "mrxd9767@gmail.com", 
-        telefono: "5512345678", 
-        pais: "México",
-        calle: "Av. Reforma 123", 
-        apartamento: "Piso 5", 
-        ciudad: "CDMX", 
-        estado: "Ciudad de México", 
-        cp: "06600",
+        nombre: "", email: "", telefono: "", pais: "México",
+        calle: "", apartamento: "", ciudad: "", estado: "", cp: "",
     });
 
+    // Estado de la Tarjeta
     const [card, setCard] = useState({
-        number: "4242424242424242", // Visa de prueba común
-        name: "JUAN PEREZ TEST", 
-        month: "12", 
-        year: "28", 
-        cvv: "123",
+        number: "", name: "", month: "", year: "", cvv: "",
     });
+
+    
 
     const total = useMemo(() => 
         cart.reduce((acc, item) => acc + item.price * (item.personas || 1), 0), 
