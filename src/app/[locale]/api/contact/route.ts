@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       from: "Sistema Trip Craft MX <info@tripcraftmx.com>",
       to: "info@tripcraftmx.com",
       replyTo: email,
-      subject: `🚨 NUEVO CONTACTO: ${nombre}`,
+      subject: `NUEVO MENSAJE: ${nombre}`,
       html: `
         <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: auto; border-radius: 20px; overflow: hidden; background-color: #0d0221; color: #ffffff;">
           <div style="background: linear-gradient(135deg, #ff00ff 0%, #7022ff 100%); padding: 40px; text-align: center;">
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       customerEmail = resend.emails.send({
         from: "Trip Craft MX <info@tripcraftmx.com>",
         to: email,
-        subject: `¡Hola ${nombre.split(' ')[0]}! Recibimos tu mensaje 📩`,
+        subject: `¡Hola ${nombre.split(' ')[0]}! Recibimos tu mensaje`,
         html: `
           <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: auto; border-radius: 20px; overflow: hidden; background-color: #ffffff; border: 1px solid #f0f0f0;">
             <div style="background: linear-gradient(135deg, #7022ff 0%, #ff00ff 100%); padding: 50px; text-align: center;">

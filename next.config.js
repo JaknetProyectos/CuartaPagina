@@ -39,6 +39,19 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "upgrade-insecure-requests", // Esto obliga a usar HTTPS
+          },
+        ],
+      },
+    ];
+  },
 };
 
 // Envolvemos la configuración con el plugin de i18n

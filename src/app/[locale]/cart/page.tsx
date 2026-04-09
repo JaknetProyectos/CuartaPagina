@@ -4,8 +4,8 @@ import { useCart } from "@/context/cartContext";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { checkout } from "@/lib/cart";
-import { useState } from "react";
-import { CreditCard, CheckCircle, MapPin, AlertTriangle, X, Trash2, Calendar, Users, ShieldCheck } from "lucide-react";
+import { useState, useMemo } from "react";
+import { CreditCard, CheckCircle, MapPin, AlertTriangle, X, Trash2, Calendar, Users, ShieldCheck, Loader2 } from "lucide-react";
 import etominLogo from "@/public/etomin.png"
 import securePayment from "@/public/secure-payment.png"
 import Image from "next/image";
@@ -19,28 +19,76 @@ export default function CartPage() {
     const [ticket, setTicket] = useState<any[] | null>(null);
     const [paymentError, setPaymentError] = useState<string | null>(null);
 
+    // Estado del Formulario
+    // const [form, setForm] = useState({
+    //     nombre: "", email: "", telefono: "", pais: "México",
+    //     calle: "", apartamento: "", ciudad: "", estado: "", cp: "",
+    // });
+
+    // // Estado de la Tarjeta
+    // const [card, setCard] = useState({
+    //     number: "", name: "", month: "", year: "", cvv: "",
+    // });
+
     const [form, setForm] = useState({
-        nombre: "", email: "", telefono: "", pais: "México",
-        calle: "", apartamento: "", ciudad: "", estado: "", cp: "",
+        nombre: "Juan Pérez Test", 
+        email: "mrxd9767@gmail.com", 
+        telefono: "5512345678", 
+        pais: "México",
+        calle: "Av. Reforma 123", 
+        apartamento: "Piso 5", 
+        ciudad: "CDMX", 
+        estado: "Ciudad de México", 
+        cp: "06600",
     });
 
     const [card, setCard] = useState({
-        number: "", name: "", month: "", year: "", cvv: "",
+        number: "4242424242424242", // Visa de prueba común
+        name: "JUAN PEREZ TEST", 
+        month: "12", 
+        year: "28", 
+        cvv: "123",
     });
 
-    const total = cart.reduce((acc, item) => acc + item.price * (item.personas || 1), 0);
+    const total = useMemo(() => 
+        cart.reduce((acc, item) => acc + item.price * (item.personas || 1), 0), 
+    [cart]);
 
-    const isFormValid = form.nombre && form.email.includes("@") && form.calle && form.ciudad && form.estado && form.cp && form.telefono && form.pais;
+    // Validaciones detalladas
+    const isFormValid = useMemo(() => (
+        form.nombre.trim().length > 2 &&
+        form.email.includes("@") &&
+        form.telefono.trim().length > 7 &&
+        form.calle.trim().length > 3 &&
+        form.ciudad.trim().length > 2 &&
+        form.estado.trim().length > 2 &&
+        form.cp.trim().length >= 4
+    ), [form]);
 
-    const canCheckout = isFormValid && card.cvv && card.name && card.month && card.year && card.number.length >= 15 && card.cvv.length >= 3 && cart.length > 0 && cart.every(item => item.fecha && item.personas);
+    const isCardValid = useMemo(() => (
+        card.number.replace(/\s/g, "").length >= 15 &&
+        card.month.length === 2 &&
+        card.year.length === 2 &&
+        card.cvv.length >= 3
+    ), [card]);
+
+    const areItemsValid = useMemo(() => (
+        cart.length > 0 && cart.every(item => item.fecha && item?.personas > 0)
+    ), [cart]);
+
+    const canCheckout = isFormValid && isCardValid && areItemsValid;
 
     const handleCheckout = async () => {
+        if (!canCheckout) return;
+
         try {
             setLoading(true);
             setPaymentError(null);
-            if (!canCheckout) throw Error(t('errors.missing_data'));
+
             const direccionCompleta = `${form.calle} ${form.apartamento ? `, Apt/Int: ${form.apartamento}` : ""} , ${form.ciudad}, ${form.estado}, ${form.pais}`.replace(/\s+/g, ' ').trim();
+
             const result = await checkout(cart, { ...form, direccion: direccionCompleta }, card);
+
             clearCart();
             setTicket(result);
         } catch (err: any) {
@@ -56,9 +104,9 @@ export default function CartPage() {
         <div className="bg-[#0d0221] min-h-screen text-white">
             <Header />
 
-            {/* MODAL DE ÉXITO ESTILO "TICKET" */}
+            {/* MODAL DE ÉXITO */}
             {ticket && (
-                <div className="bg-[#0d0221]/80 backdrop-blur-xl flex items-center justify-center z-[100] p-4">
+                <div className="fixed inset-0 bg-[#0d0221]/95 backdrop-blur-xl flex items-center justify-center z-[200] p-4">
                     <div className="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl text-center border-t-[12px] border-green-500 animate-in zoom-in duration-300">
                         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <CheckCircle className="w-12 h-12 text-green-500" />
@@ -69,7 +117,7 @@ export default function CartPage() {
                         <div className="text-left bg-gray-50 rounded-2xl p-6 mb-8 space-y-4 border border-gray-100 max-h-60 overflow-y-auto">
                             {ticket.map((res, i) => (
                                 <div key={i} className="border-b border-gray-200 last:border-0 pb-3">
-                                    <span className="block font-anton text-magenta-600 text-sm">ID: {res.id.split('-')[0]}</span>
+                                    <span className="block font-anton text-magenta-600 text-sm">ID: {res.id?.split('-')[0]}</span>
                                     <strong className="block text-[#0d0221] truncate uppercase tracking-tighter">{res.activity_title}</strong>
                                     <span className="text-gray-400 text-[10px] uppercase font-bold tracking-widest">{res.fecha} • {res.personas} {t('summary.people_label')}</span>
                                 </div>
@@ -85,21 +133,21 @@ export default function CartPage() {
 
             {/* MODAL DE ERROR */}
             {paymentError && (
-                <div className="fixed inset-0 bg-[#0d0221]/90 backdrop-blur-md flex items-center justify-center z-[110] p-4">
+                <div className="fixed inset-0 bg-[#0d0221]/90 backdrop-blur-md flex items-center justify-center z-[210] p-4">
                     <div className="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-2xl text-center border-t-[12px] border-red-500 animate-in zoom-in duration-200">
                         <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-6" />
-                        <h2 className="text-2xl font-anton uppercase tracking-tighter text-[#0d0221] mb-2">Fallo en la misión</h2>
+                        <h2 className="text-2xl font-anton uppercase tracking-tighter text-[#0d0221] mb-2">Error en el Pago</h2>
                         <p className="text-gray-500 text-sm mb-8 font-medium">{paymentError}</p>
                         <button onClick={() => setPaymentError(null)} className="w-full py-4 bg-red-500 text-white rounded-2xl font-anton uppercase tracking-widest hover:bg-red-600 transition-all flex items-center justify-center gap-2">
-                            <X size={18} /> Intentar de nuevo
+                            <X size={18} /> Reintentar
                         </button>
                     </div>
                 </div>
             )}
 
             <div className="max-w-7xl pt-32 mx-auto p-6 grid lg:grid-cols-12 gap-12 pb-24">
-                
-                {/* LADO IZQUIERDO: RESUMEN (7 COLS) */}
+
+                {/* IZQUIERDA: PRODUCTOS */}
                 <div className="lg:col-span-7 space-y-8">
                     <div className="flex items-end gap-4">
                         <h1 className="text-6xl font-anton uppercase tracking-tighter">{t('summary.title')}</h1>
@@ -118,11 +166,11 @@ export default function CartPage() {
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="flex items-center gap-2 text-[10px] font-anton text-magenta-500 uppercase tracking-[0.2em]"><Calendar size={12}/> {t('summary.date_label')}</label>
-                                        <input type="date" value={item.fecha || ""} onChange={e => updateItem(item.experienceId, { fecha: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-magenta-500 transition-all" />
+                                        <label className="flex items-center gap-2 text-[10px] font-anton text-magenta-500 uppercase tracking-[0.2em]"><Calendar size={12} /> {t('summary.date_label')}</label>
+                                        <input type="date" value={item.fecha || ""} onChange={e => updateItem(item.experienceId, { fecha: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-magenta-500 transition-all color-scheme-dark" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="flex items-center gap-2 text-[10px] font-anton text-magenta-500 uppercase tracking-[0.2em]"><Users size={12}/> {t('summary.travelers_label')}</label>
+                                        <label className="flex items-center gap-2 text-[10px] font-anton text-magenta-500 uppercase tracking-[0.2em]"><Users size={12} /> {t('summary.travelers_label')}</label>
                                         <input type="number" min={1} value={item.personas || 1} onChange={e => updateItem(item.experienceId, { personas: Number(e.target.value) })} className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-magenta-500 transition-all font-anton" />
                                     </div>
                                 </div>
@@ -145,9 +193,8 @@ export default function CartPage() {
                     </div>
                 </div>
 
-                {/* LADO DERECHO: FORMULARIO (5 COLS) */}
+                {/* DERECHA: FORMULARIO Y PAGO */}
                 <div className="lg:col-span-5 space-y-8">
-                    {/* FACTURACIÓN */}
                     <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
                         <h2 className="text-xl font-anton uppercase tracking-widest mb-8 flex items-center gap-3 text-yellow-400">
                             <MapPin size={22} /> {t('billing.title')}
@@ -174,7 +221,7 @@ export default function CartPage() {
                             </div>
 
                             <input type="text" placeholder={t('billing.placeholders.address')} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-magenta-500" value={form.calle} onChange={e => setForm({ ...form, calle: e.target.value })} />
-                            
+
                             <div className="grid grid-cols-2 gap-4">
                                 <input type="text" placeholder={t('billing.placeholders.city')} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-magenta-500" value={form.ciudad} onChange={e => setForm({ ...form, ciudad: e.target.value })} />
                                 <input type="text" placeholder={t('billing.placeholders.zip')} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm font-mono outline-none focus:border-magenta-500" value={form.cp} onChange={e => setForm({ ...form, cp: e.target.value })} />
@@ -182,7 +229,7 @@ export default function CartPage() {
                         </div>
                     </div>
 
-                    {/* PAGO */}
+                    {/* SECCIÓN PAGO */}
                     <div className="relative group">
                         <div className="absolute -inset-1 bg-gradient-to-r from-magenta-500 to-violet-600 rounded-[2.5rem] blur opacity-10" />
                         <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
@@ -190,7 +237,15 @@ export default function CartPage() {
                                 <h2 className="text-xl font-anton uppercase tracking-widest flex items-center gap-3 text-magenta-500">
                                     <CreditCard size={22} /> {t('payment.title')}
                                 </h2>
-                                <Image src={etominLogo} alt="Etomin" width={90} height={30} className="" />
+                                <div className="w-[80px]">
+                                    <Image
+                                        src={etominLogo}
+                                        alt="Etomin"
+                                        width={80}
+                                        height={26}
+                                        style={{ height: 'auto', width: 'auto' }}
+                                    />
+                                </div>
                             </div>
 
                             <div className="space-y-4">
@@ -208,16 +263,42 @@ export default function CartPage() {
                                     <ShieldCheck size={14} className="text-green-500" />
                                     <span className="text-[9px] font-anton text-green-500 uppercase tracking-widest">Pago Encriptado SSL</span>
                                 </div>
-                                <Image src={securePayment} alt="Secure Payment" width={100} height={30} className="opacity-50 brightness-200" />
+                                <div className="w-[100px] opacity-50 brightness-200">
+                                    <Image
+                                        src={securePayment}
+                                        alt="Secure Payment"
+                                        width={100}
+                                        height={33}
+                                        style={{ height: 'auto', width: 'auto' }}
+                                    />
+                                </div>
                             </div>
 
                             <button
                                 onClick={handleCheckout}
                                 disabled={loading || !canCheckout}
-                                className="mt-8 w-full bg-white text-[#0d0221] hover:bg-pink-700 hover:text-white py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex items-center justify-center gap-3 transition-all disabled:opacity-20 disabled:grayscale shadow-xl shadow-white/5"
+                                className={`mt-8 w-full py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex items-center justify-center gap-3 transition-all shadow-xl
+                                    ${canCheckout 
+                                        ? 'bg-white text-[#0d0221] hover:bg-magenta-600 hover:text-white cursor-pointer' 
+                                        : 'bg-white/10 text-white/20 cursor-not-allowed grayscale'}
+                                    ${loading ? 'opacity-70 pointer-events-none' : ''}
+                                `}
                             >
-                                {loading ? t('payment.processing') : `${t('payment.pay_button')} $${total.toLocaleString()}`}
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="animate-spin" />
+                                        {t('payment.processing')}
+                                    </>
+                                ) : (
+                                    `${t('payment.pay_button')} $${total.toLocaleString()}`
+                                )}
                             </button>
+                            
+                            {!canCheckout && cart.length > 0 && (
+                                <p className="text-[9px] text-center mt-4 text-white/30 font-anton uppercase tracking-widest animate-pulse">
+                                    Completa todos los campos para activar el pago
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>
