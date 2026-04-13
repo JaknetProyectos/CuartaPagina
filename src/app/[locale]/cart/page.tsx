@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { checkout } from "@/lib/cart";
 import { useState, useMemo } from "react";
-import { CreditCard, CheckCircle, MapPin, AlertTriangle, X, Trash2, Calendar, Users, ShieldCheck, Loader2 } from "lucide-react";
+import { CreditCard, CheckCircle, MapPin, AlertTriangle, X, Trash2, Calendar, Users, ShieldCheck, Loader2, Beaker } from "lucide-react";
 import etominLogo from "@/public/etomin.png"
 import securePayment from "@/public/secure-payment.png"
 import Image from "next/image";
@@ -19,40 +19,61 @@ export default function CartPage() {
     const [ticket, setTicket] = useState<any[] | null>(null);
     const [paymentError, setPaymentError] = useState<string | null>(null);
 
-    //Estado del Formulario
     const [form, setForm] = useState({
         nombre: "", email: "", telefono: "", pais: "México",
         calle: "", apartamento: "", ciudad: "", estado: "", cp: "",
     });
 
-    // Estado de la Tarjeta
     const [card, setCard] = useState({
         number: "", name: "", month: "", year: "", cvv: "",
     });
 
-
+    // --- FUNCIÓN DE DATOS DEMO ---
+    const fillDemoData = () => {
+        setForm({
+            nombre: "Fernando Test",
+            email: "fer@example.com",
+            telefono: "5512345678",
+            pais: "México",
+            calle: "Av. Reforma 123",
+            apartamento: "Piso 5",
+            ciudad: "CDMX",
+            estado: "CDMX",
+            cp: "06500"
+        });
+        setCard({
+            number: "4242 4242 4242 4242",
+            name: "FERNANDO TEST",
+            month: "12",
+            year: "28",
+            cvv: "123"
+        });
+    };
 
     const total = useMemo(() =>
         cart.reduce((acc, item) => acc + item.price * (item.personas || 1), 0),
         [cart]);
 
-    // Validaciones detalladas
+    // --- VALIDACIONES CORREGIDAS (MENOS ESTRICTAS) ---
     const isFormValid = useMemo(() => (
-        form.nombre.trim().length > 2 &&
+        form.nombre.trim().length >= 2 &&
         form.email.includes("@") &&
-        form.telefono.trim().length > 7 &&
-        form.calle.trim().length > 3 &&
-        form.ciudad.trim().length > 2 &&
-        form.estado.trim().length > 2 &&
+        form.telefono.trim().length >= 8 &&
+        form.calle.trim().length >= 3 &&
+        form.ciudad.trim().length >= 2 &&
         form.cp.trim().length >= 4
     ), [form]);
 
-    const isCardValid = useMemo(() => (
-        card.number.replace(/\s/g, "").length >= 15 &&
-        card.month.length === 2 &&
-        card.year.length === 2 &&
-        card.cvv.length >= 3
-    ), [card]);
+    const isCardValid = useMemo(() => {
+        const cleanNumber = card.number.replace(/\s/g, "");
+        return (
+            cleanNumber.length >= 15 &&
+            card.month.length === 2 &&
+            card.year.length === 2 &&
+            card.cvv.length >= 3 &&
+            card.name.length > 2
+        );
+    }, [card]);
 
     const areItemsValid = useMemo(() => (
         cart.length > 0 && cart.every(item => item.fecha && (item.personas ?? 0) > 0)
@@ -60,21 +81,26 @@ export default function CartPage() {
 
     const canCheckout = isFormValid && isCardValid && areItemsValid;
 
+    // --- FEEDBACK DE VALIDACIÓN PARA EL USUARIO ---
+    const getValidationMessage = () => {
+        if (cart.length === 0) return "El carrito está vacío";
+        if (!areItemsValid) return "Faltan fechas o número de personas";
+        if (!isFormValid) return "Faltan datos de envío o contacto";
+        if (!isCardValid) return "Datos de tarjeta incompletos";
+        return null;
+    };
+
     const handleCheckout = async () => {
         if (!canCheckout) return;
-
         try {
             setLoading(true);
             setPaymentError(null);
-
             const direccionCompleta = `${form.calle} ${form.apartamento ? `, Apt/Int: ${form.apartamento}` : ""} , ${form.ciudad}, ${form.estado}, ${form.pais}`.replace(/\s+/g, ' ').trim();
-
             const result = await checkout(cart, { ...form, direccion: direccionCompleta }, card);
-
             clearCart();
             setTicket(result);
         } catch (err: any) {
-            setPaymentError(err.message || t('errors.generic_payment'));
+            setPaymentError(err.message || "Error en el pago");
         } finally {
             setLoading(false);
         }
@@ -86,26 +112,23 @@ export default function CartPage() {
         <div className="bg-[#0d0221] min-h-screen text-white">
             <Header />
 
-            {/* MODAL DE ÉXITO */}
+            {/* BOTÓN FLOTANTE PARA DEMO */}
+            {/* <button 
+                onClick={fillDemoData}
+                className="fixed bottom-6 right-6 z-[100] bg-yellow-400 text-black px-4 py-2 rounded-full font-anton text-xs uppercase tracking-widest flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
+            >
+                <Beaker size={14} /> Llenar Datos Demo
+            </button> */}
+
+            {/* MODAL DE ÉXITO (INALTERADO) */}
             {ticket && (
                 <div className="fixed inset-0 bg-[#0d0221]/95 backdrop-blur-xl flex items-center justify-center z-[200] p-4">
-                    <div className="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl text-center border-t-[12px] border-green-500 animate-in zoom-in duration-300">
+                    <div className="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl text-center border-t-[12px] border-green-500">
                         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <CheckCircle className="w-12 h-12 text-green-500" />
                         </div>
                         <h2 className="text-3xl font-anton uppercase text-[#0d0221] mb-2">{t('success.title')}</h2>
                         <p className="text-gray-500 font-medium mb-8">{t('success.message', { email: form.email })}</p>
-
-                        <div className="text-left bg-gray-50 rounded-2xl p-6 mb-8 space-y-4 border border-gray-100 max-h-60 overflow-y-auto">
-                            {ticket.map((res, i) => (
-                                <div key={i} className="border-b border-gray-200 last:border-0 pb-3">
-                                    <span className="block font-anton text-magenta-600 text-sm">ID: {res.id?.split('-')[0]}</span>
-                                    <strong className="block text-[#0d0221] truncate uppercase tracking-tighter">{res.activity_title}</strong>
-                                    <span className="text-gray-400 text-[10px] uppercase font-bold tracking-widest">{res.fecha} • {res.personas} {t('summary.people_label')}</span>
-                                </div>
-                            ))}
-                        </div>
-
                         <button onClick={() => window.location.href = "/"} className="w-full py-4 bg-[#0d0221] text-white rounded-2xl font-anton uppercase tracking-widest hover:bg-magenta-600 transition-all shadow-xl">
                             {t('success.back_home')}
                         </button>
@@ -113,10 +136,10 @@ export default function CartPage() {
                 </div>
             )}
 
-            {/* MODAL DE ERROR */}
+            {/* MODAL DE ERROR (INALTERADO) */}
             {paymentError && (
                 <div className="fixed inset-0 bg-[#0d0221]/90 backdrop-blur-md flex items-center justify-center z-[210] p-4">
-                    <div className="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-2xl text-center border-t-[12px] border-red-500 animate-in zoom-in duration-200">
+                    <div className="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-2xl text-center border-t-[12px] border-red-500">
                         <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-6" />
                         <h2 className="text-2xl font-anton uppercase tracking-tighter text-[#0d0221] mb-2">Error en el Pago</h2>
                         <p className="text-gray-500 text-sm mb-8 font-medium">{paymentError}</p>
@@ -166,7 +189,7 @@ export default function CartPage() {
                         ))}
                     </div>
 
-                    <div className="p-8 bg-gradient-to-r from-magenta-600 to-violet-700 rounded-[2rem] flex justify-between items-center shadow-2xl shadow-magenta-500/20">
+                    <div className="p-8 bg-gradient-to-r from-magenta-600 to-violet-700 rounded-[2rem] flex justify-between items-center shadow-2xl">
                         <span className="font-anton uppercase tracking-[0.3em] text-sm text-white/80">{t('summary.total_label')}:</span>
                         <div className="text-right">
                             <span className="text-5xl font-anton tracking-tighter block leading-none">${total.toLocaleString()}</span>
@@ -177,7 +200,7 @@ export default function CartPage() {
 
                 {/* DERECHA: FORMULARIO Y PAGO */}
                 <div className="lg:col-span-5 space-y-8">
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
+                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8">
                         <h2 className="text-xl font-anton uppercase tracking-widest mb-8 flex items-center gap-3 text-yellow-400">
                             <MapPin size={22} /> {t('billing.title')}
                         </h2>
@@ -211,81 +234,57 @@ export default function CartPage() {
                         </div>
                     </div>
 
-                    {/* SECCIÓN PAGO */}
-                    <div className="relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-magenta-500 to-violet-600 rounded-[2.5rem] blur opacity-10" />
-                        <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
-                            <div className="flex justify-between items-center mb-8">
-                                <h2 className="text-xl font-anton uppercase tracking-widest flex items-center gap-3 text-magenta-500">
-                                    <CreditCard size={22} /> {t('payment.title')}
-                                </h2>
-                                <div className="w-[80px]">
-                                    <Image
-                                        src={etominLogo}
-                                        alt="Etomin"
-                                        width={80}
-                                        height={26}
-                                        style={{ height: 'auto', width: 'auto' }}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-4">
-                                <input type="text" placeholder={t('payment.placeholders.card_name')} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none focus:border-magenta-500 transition text-sm font-anton uppercase tracking-widest" value={card.name} onChange={e => setCard({ ...card, name: e.target.value })} />
-                                <input type="text" placeholder={t('payment.placeholders.card_number')} maxLength={16} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none focus:border-magenta-500 transition font-mono tracking-[0.2em] text-sm" value={card.number} onChange={e => setCard({ ...card, number: e.target.value })} />
-                                <div className="grid grid-cols-3 gap-3">
-                                    <input type="text" placeholder="MM" maxLength={2} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center outline-none focus:border-magenta-500 transition text-sm font-anton" value={card.month} onChange={e => setCard({ ...card, month: e.target.value })} />
-                                    <input type="text" placeholder="YY" maxLength={2} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center outline-none focus:border-magenta-500 transition text-sm font-anton" value={card.year} onChange={e => setCard({ ...card, year: e.target.value })} />
-                                    <input type="password" placeholder="CVV" maxLength={4} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center outline-none focus:border-magenta-500 transition text-sm font-anton" value={card.cvv} onChange={e => setCard({ ...card, cvv: e.target.value })} />
-                                </div>
-                            </div>
-
-                            <div className="mt-8 flex flex-col items-center gap-4">
-                                <div className="flex items-center gap-2 px-4 py-1.5 bg-green-500/10 rounded-full border border-green-500/20">
-                                    <ShieldCheck size={14} className="text-green-500" />
-                                    <span className="text-[9px] font-anton text-green-500 uppercase tracking-widest">Pago Encriptado SSL</span>
-                                </div>
-                                <div className="w-[100px] opacity-50 brightness-200">
-                                    <Image
-                                        src={securePayment}
-                                        alt="Secure Payment"
-                                        width={100}
-                                        height={33}
-                                        style={{ height: 'auto', width: 'auto' }}
-                                    />
-                                </div>
-                            </div>
-
-                            <button
-                                onClick={handleCheckout}
-                                disabled={loading || !canCheckout}
-                                className={`mt-8 w-full py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex items-center justify-center gap-3 transition-all shadow-xl
-                                    ${canCheckout
-                                        ? 'bg-white text-[#0d0221] hover:bg-magenta-600 hover:text-white cursor-pointer'
-                                        : 'bg-white/10 text-white/20 cursor-not-allowed grayscale'}
-                                    ${loading ? 'opacity-70 pointer-events-none' : ''}
-                                `}
-                            >
-                                {loading ? (
-                                    <>
-                                        <Loader2 className="animate-spin" />
-                                        {t('payment.processing')}
-                                    </>
-                                ) : (
-                                    `${t('payment.pay_button')} $${total.toLocaleString()}`
-                                )}
-                            </button>
-
-                            {!canCheckout && cart.length > 0 && (
-                                <p className="text-[9px] text-center mt-4 text-white/30 font-anton uppercase tracking-widest animate-pulse">
-                                    Completa todos los campos para activar el pago
-                                </p>
-                            )}
+                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
+                        <div className="flex justify-between items-center mb-8">
+                            <h2 className="text-xl font-anton uppercase tracking-widest flex items-center gap-3 text-magenta-500">
+                                <CreditCard size={22} /> {t('payment.title')}
+                            </h2>
+                            <Image src={etominLogo} alt="Etomin" width={120} height={40} />
                         </div>
+
+                        <div className="space-y-4">
+                            <input type="text" placeholder={t('payment.placeholders.card_name')} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none focus:border-magenta-500 text-sm font-anton uppercase" value={card.name} onChange={e => setCard({ ...card, name: e.target.value })} />
+                            <input type="text" placeholder={t('payment.placeholders.card_number')} maxLength={19} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none focus:border-magenta-500 font-mono tracking-widest text-sm" value={card.number} onChange={e => {
+                                const val = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+                                setCard({ ...card, number: val });
+                            }} />
+                            <div className="grid grid-cols-3 gap-3">
+                                <input type="text" placeholder="MM" maxLength={2} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center outline-none focus:border-magenta-500 text-sm font-anton" value={card.month} onChange={e => setCard({ ...card, month: e.target.value })} />
+                                <input type="text" placeholder="YY" maxLength={2} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center outline-none focus:border-magenta-500 text-sm font-anton" value={card.year} onChange={e => setCard({ ...card, year: e.target.value })} />
+                                <input type="password" placeholder="CVV" maxLength={4} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center outline-none focus:border-magenta-500 text-sm font-anton" value={card.cvv} onChange={e => setCard({ ...card, cvv: e.target.value })} />
+                            </div>
+                        </div>
+
+                        <button
+                            onClick={handleCheckout}
+                            disabled={loading || !canCheckout}
+                            className={`mt-8 w-full py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex flex-col items-center justify-center transition-all shadow-xl
+                                ${canCheckout
+                                    ? 'bg-white text-[#0d0221] hover:bg-magenta-600 hover:text-white cursor-pointer'
+                                    : 'bg-white/10 text-white/20 cursor-not-allowed grayscale'}
+                                ${loading ? 'opacity-70 pointer-events-none' : ''}
+                            `}
+                        >
+                            {loading ? (
+                                <div className="flex items-center gap-3"><Loader2 className="animate-spin" /> {t('payment.processing')}</div>
+                            ) : (
+                                <>
+                                    <span>{t('payment.pay_button')} ${total.toLocaleString()}</span>
+                                </>
+                            )}
+                        </button>
+
+                        {!canCheckout && (
+                            <div className="mt-4 flex items-center justify-center gap-2 text-yellow-500 animate-pulse">
+                                <AlertTriangle size={12} />
+                                <p className="text-[10px] font-anton uppercase tracking-widest">
+                                    {getValidationMessage()}
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
-
             <Footer />
         </div>
     );
