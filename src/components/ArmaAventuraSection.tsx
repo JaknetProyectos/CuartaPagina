@@ -62,7 +62,7 @@ export default function ArmaAventuraSection() {
             <div className="space-y-6">
               <div>
                 <p className="text-yellow-400 font-bold uppercase tracking-[0.3em] text-sm mb-4">
-                  // {t('upper_subtitle')}
+                  {t('upper_subtitle')}
                 </p>
                 <h3 className="font-anton text-white text-5xl lg:text-7xl mb-6 uppercase leading-tight drop-shadow-2xl">
                   {t('main_subtitle')}

@@ -24,7 +24,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <body suppressHydrationWarning className="antialiased font-work-sans">
+    <body suppressHydrationWarning className="antialiased font-work-sans bg-[#0d0221]">
       <NextIntlClientProvider messages={messages} locale={locale}>
         <CartProvider>
           <ClientBody>

@@ -30,11 +30,11 @@ export default function CartPage() {
         number: "", name: "", month: "", year: "", cvv: "",
     });
 
-    
 
-    const total = useMemo(() => 
-        cart.reduce((acc, item) => acc + item.price * (item.personas || 1), 0), 
-    [cart]);
+
+    const total = useMemo(() =>
+        cart.reduce((acc, item) => acc + item.price * (item.personas || 1), 0),
+        [cart]);
 
     // Validaciones detalladas
     const isFormValid = useMemo(() => (
@@ -55,7 +55,7 @@ export default function CartPage() {
     ), [card]);
 
     const areItemsValid = useMemo(() => (
-        cart.length > 0 && cart.every(item => item.fecha && item?.personas > 0)
+        cart.length > 0 && cart.every(item => item.fecha && (item.personas ?? 0) > 0)
     ), [cart]);
 
     const canCheckout = isFormValid && isCardValid && areItemsValid;
@@ -260,8 +260,8 @@ export default function CartPage() {
                                 onClick={handleCheckout}
                                 disabled={loading || !canCheckout}
                                 className={`mt-8 w-full py-6 rounded-2xl font-anton text-2xl uppercase tracking-tighter flex items-center justify-center gap-3 transition-all shadow-xl
-                                    ${canCheckout 
-                                        ? 'bg-white text-[#0d0221] hover:bg-magenta-600 hover:text-white cursor-pointer' 
+                                    ${canCheckout
+                                        ? 'bg-white text-[#0d0221] hover:bg-magenta-600 hover:text-white cursor-pointer'
                                         : 'bg-white/10 text-white/20 cursor-not-allowed grayscale'}
                                     ${loading ? 'opacity-70 pointer-events-none' : ''}
                                 `}
@@ -275,7 +275,7 @@ export default function CartPage() {
                                     `${t('payment.pay_button')} $${total.toLocaleString()}`
                                 )}
                             </button>
-                            
+
                             {!canCheckout && cart.length > 0 && (
                                 <p className="text-[9px] text-center mt-4 text-white/30 font-anton uppercase tracking-widest animate-pulse">
                                     Completa todos los campos para activar el pago
