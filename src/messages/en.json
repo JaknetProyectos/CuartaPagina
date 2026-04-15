@@ -1,113 +1,113 @@
 {
   "Cart": {
-    "checkout": "Checkout",
-    "empty_title_part1": "Your cart is",
+    "checkout": "Finalize Booking",
+    "empty_title_part1": "Your selection is",
     "empty_title_part2": "empty",
-    "empty_description": "It looks like you haven't added any adventures to your itinerary yet. The world awaits!",
+    "empty_description": "It appears you haven't integrated any experiences into your itinerary yet. A world of discovery awaits!",
     "explore_destinations": "Explore Destinations",
     "football_passion": "Football Passion",
-    "back_home": "Back to home",
+    "back_home": "Return to home",
     "summary": {
-      "title": "Review Selection",
+      "title": "Selection Summary",
       "remove": "Remove",
-      "date_label": "Date",
-      "travelers_label": "Travelers",
-      "total_label": "Order total",
+      "date_label": "Scheduled Date",
+      "travelers_label": "Number of Travelers",
+      "total_label": "Total order amount",
       "people_label": "people"
     },
     "billing": {
-      "title": "Billing Details",
+      "title": "Billing Information",
       "labels": {
         "country": "Country / Region"
       },
       "placeholders": {
-        "name": "Full name",
+        "name": "Full name and surname",
         "email": "Email address",
-        "address": "Address (Street and number)",
-        "apt": "Apartment, suite, etc. (optional)",
+        "address": "Street address and number",
+        "apt": "Apartment, suite, or unit (optional)",
         "city": "Town / City",
         "state": "State / Province",
-        "zip": "Zip Code",
+        "zip": "Zip / Postal Code",
         "phone": "Phone number"
       },
       "countries": {
-        "other": "Other"
+        "other": "Other destination"
       }
     },
     "payment": {
-      "title": "Card Payment",
+      "title": "Secure Card Payment",
       "placeholders": {
-        "card_name": "Cardholder name",
+        "card_name": "Cardholder name as it appears on card",
         "card_number": "Card number"
       },
-      "security_notice": "Payment processed securely with 256-bit SSL",
-      "pay_button": "Pay",
-      "processing": "Processing..."
+      "security_notice": "Transaction processed under strict 256-bit SSL encryption standards",
+      "pay_button": "Confirm Payment",
+      "processing": "Verifying transaction..."
     },
     "success": {
-      "title": "Payment Successful!",
-      "message": "We have sent your booking details to {email}",
-      "back_home": "Back to Home"
+      "title": "Transaction Successful!",
+      "message": "We have sent the receipt and your reservation details to {email}",
+      "back_home": "Back to main page"
     },
     "errors": {
-      "missing_data": "Please complete all required fields.",
-      "generic_payment": "Error processing payment"
+      "missing_data": "Please ensure all mandatory fields are completed.",
+      "generic_payment": "An issue occurred while processing the payment."
     }
   },
   "Common": {
     "nav": {
-      "about": "About Us",
-      "build_adventure": "Build your adventure",
-      "experiences": "Experiences",
+      "about": "Our Essence",
+      "build_adventure": "Design Your Adventure",
+      "experiences": "Curated Experiences",
       "football_passion": "Football Passion"
     }
   },
   "Hero": {
-    "title_visit": "Visit",
+    "title_visit": "Discover",
     "title_mexico": "Mexico",
-    "description": "Discover the magic of our lands with safety, comfort, and a touch of unforgettable adventure.",
-    "explore_the": "Explore the",
-    "store": "Store",
-    "start_trip": "Start trip",
+    "description": "Explore the magic of our lands with absolute safety, comfort, and the distinction of an unforgettable journey.",
+    "explore_the": "Visit our",
+    "store": "Travel Boutique",
+    "start_trip": "Begin your journey",
     "labels": {
       "culture": "Culture & Tradition",
-      "luxury": "Luxury & Beach",
-      "magic": "Magic on Water",
-      "history": "History & Wine"
+      "luxury": "Luxury & Exclusivity",
+      "magic": "Aquatic Mysticism",
+      "history": "Historical Legacy & Enology"
     }
   },
   "About": {
-    "subtitle": "About Us",
-    "image_alt": "Colorful Mexican street",
-    "description": "At <brand>TripCraftMX</brand> we believe that traveling is much more than moving from one place to another: it is about living experiences that awaken the senses, connect with culture, and leave unforgettable memories.",
-    "essense_title": "Our essence",
-    "essense_description": "We design unique tours that combine adventure, history, nature, and gastronomy."
+    "subtitle": "Get to Know Us",
+    "image_alt": "Colorful traditional Mexican street",
+    "description": "At <brand>Trip Craft MX</brand>, we are convinced that traveling transcends simple movement: it is about immersing yourself in experiences that awaken the senses, connect with cultural roots, and forge everlasting memories.",
+    "essense_title": "Our Essence",
+    "essense_description": "We curate unique journeys that intertwine adventure, history, nature, and haute gastronomy."
   },
   "CustomAdventure": {
-    "hero_title_line1": "BUILD YOUR",
+    "hero_title_line1": "DESIGN YOUR",
     "hero_title_line2": "ADVENTURE",
-    "image_alt": "Group of travelers",
-    "upper_subtitle": "Looking for a tailor-made plan",
-    "main_subtitle": "We help you",
-    "question": "Need more information or want to plan a group adventure?",
-    "contact_text": "If you have questions about our services, want more details about this tour, or are planning a special experience for a group of people, <contact>contact us.</contact>",
-    "cta_button": "Build your adventure"
+    "image_alt": "Group of travelers exploring",
+    "upper_subtitle": "Seeking a plan designed exclusively for you?",
+    "main_subtitle": "We guide you through the process",
+    "question": "Need more information or planning a group expedition?",
+    "contact_text": "If you have inquiries about our services, require specific details about this journey, or are organizing a special group experience, please do not hesitate to <contact>contact us.</contact>",
+    "cta_button": "Design your adventure"
   },
   "Mission": {
     "title": "MISSION",
-    "description": "To inspire every traveler to discover the magic of Mexico with safety, comfort, and a touch of adventure. We want every experience to be a bridge between your curiosity and the cultural and natural richness that surrounds us."
+    "description": "To inspire every traveler to discover the mysticism of Mexico with absolute confidence, comfort, and a spirit of sophisticated adventure. We aspire for every experience to be the link between your curiosity and the vast cultural and natural richness that surrounds us."
   },
   "Experiences": {
-    "hero_title": "EXPERIENCES",
-    "image_alt": "Experiences",
-    "upper_subtitle": "OUR PLANS",
-    "notice_title": "Important Notice",
-    "notice_description": "The experience service <bold>does not include transportation to or from the meeting point</bold>. If required, transportation must be managed and covered directly by the client. The company assumes no responsibility for delays, setbacks, or expenses arising from external transportation hired by the participant.",
-    "title": "Adventures",
+    "hero_title": "CURATED EXPERIENCES",
+    "image_alt": "Showcase of exclusive experiences",
+    "upper_subtitle": "OUR ITINERARIES",
+    "notice_title": "Important Information",
+    "notice_description": "The experience service <bold>does not include transfers to or from the meeting point</bold>. If required, such transportation must be coordinated and covered independently by the client. The company assumes no responsibility for delays, setbacks, or expenses derived from external transportation services.",
+    "title": "Signature Adventures",
     "from_label": "From",
-    "tax_included": "Tax included",
-    "empty_state": "No experiences found for this destination",
-    "error_message": "Loading error",
+    "tax_included": "VAT included",
+    "empty_state": "No experiences currently available for this destination",
+    "error_message": "Error synchronizing data",
     "pagination": {
       "prev": "Previous",
       "next": "Next",
@@ -116,128 +116,128 @@
   },
   "Contact": {
     "title": "Contact Us",
-    "subtitle": "Have questions? We're here to help",
-    "error_message": "There was an error sending the message. Please try again.",
-    "connection_error": "Connection error.",
+    "subtitle": "Have any questions? We are at your complete disposal",
+    "error_message": "There was an error while trying to send the message. Please try again.",
+    "connection_error": "A network connection issue was detected.",
     "info": {
       "phone": {
         "label": "Phone",
-        "hours": "Mon - Fri, 9am - 6pm"
+        "hours": "Monday to Friday, 9am - 6pm"
       },
       "email": {
         "label": "Email",
-        "response": "We respond within 24 hours"
+        "response": "Response guaranteed within 24 hours"
       },
       "location": {
-        "label": "Location",
+        "label": "Central Office",
         "city": "Mexico City, Mexico",
-        "appointment": "Visits by appointment only"
+        "appointment": "Personalized attention by appointment only"
       }
     },
     "form": {
-      "name_label": "Name",
-      "name_placeholder": "Your name",
-      "email_label": "Email",
+      "name_label": "Full Name",
+      "name_placeholder": "Enter your full name here",
+      "email_label": "Contact Email",
       "email_placeholder": "your@email.com",
       "message_label": "Message",
-      "message_placeholder": "How can we help you?",
-      "submit_button": "Send message"
+      "message_placeholder": "How can we elevate your experience?",
+      "submit_button": "Send Inquiry"
     },
     "success": {
-      "title": "Message sent",
-      "description": "We will get in touch soon"
+      "title": "Message Sent Successfully",
+      "description": "A destination specialist will get in touch with you shortly"
     }
   },
   "Footer": {
-    "brand_description": "Unique experiences combining adventure, history, and culture in Mexico.",
+    "brand_description": "Exclusive travel experiences merging adventure, history, and culture in Mexico.",
     "country": "Mexico",
     "sections": {
-      "payments": "We Accept",
+      "payments": "Accepted Payment Methods",
       "contact": "Contact",
-      "legal": "Legal"
+      "legal": "Legal Information"
     },
     "legal_links": {
       "terms": "Terms & Conditions",
-      "refunds": "Refund Policy",
+      "refunds": "Refund Policies",
       "privacy": "Privacy Notice",
       "consumer": "Consumer Protection"
     },
     "copyright": "© {year} Trip Craft MX. High-End Travel Experiences.",
-    "made_with_love": "Made with love in Mexico"
+    "made_with_love": "Designed with passion in Mexico"
   },
   "AdventurePlanner": {
     "hero": {
-      "overline": "Build your adventure",
-      "title": "Rely on experts",
-      "description": "We help you design unique tours that combine adventure, history, nature, and gastronomy."
+      "overline": "Design your adventure",
+      "title": "Expert Guidance",
+      "description": "We assist you in creating memorable journeys that balance adventure, history, nature, and fine dining."
     },
     "modal": {
       "title": "Request Received",
-      "description": "You will shortly receive your folio to pay for your quote.",
+      "description": "Shortly, we will send your folio number to proceed with the payment of your quote.",
       "button": "Understood"
     },
     "content": {
       "title": "Need more information or planning a group adventure?",
-      "description": "If you have any questions about our services, would like more details about this tour, or are planning a special experience for a group, please contact us. Our team will be happy to offer personalized attention to help you organize a tailor-made adventure, adapted to your interests and needs. Whether you're looking for a cultural excursion, a day exploring cenotes, or a unique combination of activities in and around Tulum, we're here to support you and design the perfect experience for you and your group."
+      "description": "If you have inquiries about our services or seek specific details about a tour or group experience, we are here to serve you. Our concierge team will be delighted to provide personalized attention to help you organize a tailor-made adventure, aligned with your specific interests. Whether you are looking for a cultural immersion, a day exploring cenotes, or a unique combination of activities in Tulum and its surroundings, we are ready to design the perfect experience for you."
     },
     "form": {
-      "header_title": "Request Form",
-      "header_subtitle": "Complete the fields to receive your quote",
-      "default_exp_title": "Custom Adventure",
-      "error_alert": "There was an error processing your request.",
+      "header_title": "Quote Request Form",
+      "header_subtitle": "Complete the following fields to receive your personalized proposal",
+      "default_exp_title": "Tailor-Made Adventure",
+      "error_alert": "An error occurred while processing your request.",
       "submit_button": "Send Request",
       "labels": {
-        "name": "Full Name",
+        "name": "Holder's Full Name",
         "email": "Contact Email",
         "phone": "Phone Number",
-        "group_type": "Group Type",
-        "base_experience": "Base Experience",
-        "details": "Message and extra details"
+        "group_type": "Group Profile",
+        "base_experience": "Reference Experience",
+        "details": "Message and additional specifications"
       },
       "options": {
         "individual": "Individual",
         "couple": "Couple",
-        "group": "+4 Group"
+        "group": "Group (+4 people)"
       },
       "placeholders": {
-        "select_adventure": "Select an adventure...",
-        "details": "E.g.: I require private transport and a bilingual guide..."
+        "select_adventure": "Select a base experience...",
+        "details": "E.g.: I require private transportation and a certified bilingual guide..."
       },
       "footer": {
-        "question": "Already have a quote?",
-        "link": "Pay Quote"
+        "question": "Already have an approved quote?",
+        "link": "Proceed to Payment"
       }
     }
   },
   "PayQuote": {
-    "loading": "Loading System",
+    "loading": "Initiating Payment System",
     "branding": {
-      "title_part1": "Pay for your",
+      "title_part1": "Settle your",
       "title_part2": "Adventure",
-      "subtitle": "We are here to support you and design the perfect experience for you and your group."
+      "subtitle": "We are by your side to ensure every detail of your group experience is flawless."
     },
     "form": {
-      "header": "Payment Details",
+      "header": "Secure Payment Details",
       "labels": {
-        "folio": "Quote Number",
-        "passenger": "Main Passenger",
-        "amount": "Total Agreed Amount (Tax Included)"
+        "folio": "Quote Folio",
+        "passenger": "Lead Passenger",
+        "amount": "Total Agreed Amount (VAT included)"
       },
       "messages": {
-        "found": "Quote found and linked.",
+        "found": "Quote validated and successfully linked.",
         "external": "External folio detected. Please enter the agreed amount."
       },
-      "submit_button": "Add to Cart"
+      "submit_button": "Add to Selection"
     },
     "cart": {
-      "custom_prefix": "Custom Reservation",
-      "client": "Client",
+      "custom_prefix": "Special Reservation",
+      "client": "Traveler",
       "folio_label": "Tracking folio"
     },
     "editorial": {
-      "title": "Description",
-      "subtitle": "Need more information or want to plan a group adventure?",
-      "description": "If you have questions about our services, want more details about this tour, or are planning a special experience for a group of people, contact us. Our team will be happy to offer you personalized attention to help you organize a tailor-made adventure, adapted to your interests and needs."
+      "title": "Service Description",
+      "subtitle": "Need further assistance or planning a group event?",
+      "description": "For any inquiries regarding our service standards or details on personalized itineraries, our team of experts is ready to offer tailor-made solutions, ensuring every second of your trip is extraordinary."
     }
   },
   "FootballRequest": {
@@ -246,85 +246,85 @@
       "title_part2": "Quote"
     },
     "card": {
-      "overline": "Total Experience",
+      "overline": "Immersive Experience",
       "title_part1": "Football",
       "title_part2": "Passion",
-      "description": "Experience football like a true local, enjoying <bold>transportation, tacos, drinks, and souvenirs</bold>. Immerse yourself in the game's excitement from start to finish, hassle-free, in a safe and authentic environment. During the World Cup, we offer live broadcast experiences with giant screens and a festive atmosphere, combining sports and unique gastronomy."
+      "description": "Live the intensity of football like an authentic local, integrating <bold>private transportation, taco tasting, drinks, and an exclusive souvenir</bold>. Immerse yourself in the stadium's excitement from start to finish, in a safe and genuine environment. During the World Cup, we offer exclusive broadcast zones with high-definition screens and an unparalleled festive atmosphere."
     },
     "form": {
       "labels": {
         "name": "Full Name",
         "email": "Email Address",
-        "details": "Which match or experience are you looking for?"
+        "details": "Which match or football experience do you have in mind?"
       },
       "submit_button": "Send Request",
-      "error_alert": "Error registering request.",
+      "error_alert": "Could not register the request at this time.",
       "footer": {
-        "question": "Already have a quote?",
-        "link": "Pay for your quote"
+        "question": "Already have a quote for this experience?",
+        "link": "Pay for my quote"
       }
     },
     "success": {
       "title": "Request Received!",
-      "description": "We will contact you shortly with a proposal and your payment folio."
+      "description": "We will contact you shortly with a personalized proposal and your payment folio."
     }
   },
   "PayFootball": {
     "loading": "Starting Checkout...",
     "branding": {
       "overline": "Football Passion",
-      "title_part1": "Total",
+      "title_part1": "Full",
       "title_part2": "Experience",
-      "description": "Experience football like a true local, enjoying transportation, tacos, drinks, and souvenirs. We are here to support you and design the perfect experience for you and your group of friends."
+      "description": "Enjoy football from a local perspective with transportation, typical gastronomy, and exclusive details. We are here to design the perfect match day for you and your companions."
     },
     "form": {
       "labels": {
-        "folio": "Quote No.",
-        "passenger": "Passenger Name",
+        "folio": "Quote Number",
+        "passenger": "Reservation Holder",
         "amount": "Total Agreed Amount (MXN)"
       },
       "messages": {
         "found": "QUOTE LOCATED",
         "external": "EXTERNAL FOLIO DETECTED"
       },
-      "submit_button": "Add to Cart"
+      "submit_button": "Add to selection"
     },
     "cart": {
-      "title_prefix": "TOTAL EXP",
-      "passenger": "Passenger",
+      "title_prefix": "FULL EXP.",
+      "passenger": "Holder",
       "manual_folio": "Manual Folio"
     },
     "editorial": {
-      "title": "Description",
-      "subtitle": "Experience football like a true local, enjoying <white>transportation, tacos, drinks, and souvenirs.</white> Immerse yourself in the game's excitement from start to finish, hassle-free, in a safe and authentic environment.",
-      "description": "Additionally, during the world cup, we offer special live broadcast experiences, where you can enjoy matches on giant screens alongside other fans, maintaining the same energy and passion felt at the stadium. A unique experience combining sports, gastronomy, and a festive atmosphere."
+      "title": "Service Details",
+      "subtitle": "Live football like a true local, enjoying <white>private transportation, gourmet tacos, drinks, and souvenirs.</white> Immerse yourself in the game's excitement from start to finish.",
+      "description": "Likewise, during international events, we provide live broadcast experiences with cutting-edge technology and the best company, maintaining the vibrant energy of the stadium. A unique fusion of sports, gastronomy, and celebration."
     }
   },
   "ExperienceDetail": {
-    "error_loading": "Error loading experience",
+    "error_loading": "Could not load experience details",
     "alerts": {
-      "select_date": "Please select a date for your adventure"
+      "select_date": "Please select your preferred date for this adventure"
     },
     "purchase_card": {
-      "price_from": "Price from",
-      "tax_note": "VAT (16%) INCLUDED \n PER PERSON",
+      "price_from": "Rate from",
+      "tax_note": "VAT (16%) INCLUDED \n PER GUEST",
       "labels": {
-        "date": "Select your date",
-        "people": "Number of people"
+        "date": "Choose your date",
+        "people": "Number of guests"
       },
       "subtotal": "Subtotal",
       "buttons": {
-        "add_to_cart": "Add to cart",
+        "add_to_cart": "Add to selection",
         "added": "Added!"
       },
       "confirmation_note": "⚡ Immediate confirmation via email",
       "trust_badges": {
         "quick": "Fast confirmation",
-        "secure": "Secure offline payment"
+        "secure": "Secure payment environment"
       }
     },
     "sections": {
-      "description_title": "Experience description",
+      "description_title": "Experience Description",
       "guidelines": {
         "title": "Booking Guidelines",
         "p1": "All our experience services are <bold>subject to prior confirmation of availability</bold> by our team. Final validation will be sent once operational slots for the selected date are verified.",
@@ -334,7 +334,7 @@
       },
       "legal": {
         "label": "Legal Notice",
-        "text": "In compliance with the <strong>Federal Consumer Protection Law</strong>,  Trip Craft MX guarantees the right to clear information regarding service conditions. Any adjustment to the itinerary will always be made with the express consent of the booking holder."
+        "text": "In compliance with the <strong>Federal Consumer Protection Law</strong>, Trip Craft MX guarantees the right to clear information regarding service conditions. Any adjustment to the itinerary will always be made with the express consent of the booking holder."
       }
     }
   }

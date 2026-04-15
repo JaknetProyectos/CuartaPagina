@@ -1,5 +1,6 @@
 "use client";
 
+import { getOptimizedUrl } from '@/lib/images';
 import { useTranslations } from 'next-intl';
 
 export default function ExperienciasSection() {
@@ -31,7 +32,7 @@ export default function ExperienciasSection() {
               <div className="absolute -inset-1 bg-gradient-to-tr from-yellow-400 via-magenta-500 to-violet-600 rounded-[2.5rem] blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
               <div className="relative w-full h-[400px] lg:h-full min-h-[350px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
                 <img
-                  src="https://plus.unsplash.com/premium_photo-1732738372625-8dc6a664ec78?q=80&w=387&auto=format&fit=crop"
+                  src={getOptimizedUrl("https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")}
                   alt={t('image_alt')}
                   className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                   loading="eager"

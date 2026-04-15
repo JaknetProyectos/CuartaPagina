@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Loader2, Search, CreditCard, Trophy, ShieldCheck, Sparkles } from "lucide-react";
 import { useTranslations } from 'next-intl';
+import { getOptimizedUrl } from "@/lib/images";
 
 function PayFootballContent() {
     const t = useTranslations('PayFootball');
@@ -174,7 +175,7 @@ function PayFootballContent() {
                         <div className="absolute -inset-2 bg-gradient-to-r from-[#03A9F4] to-magenta-600 rounded-[3rem] blur opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
                         <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] border border-white/10 shadow-2xl">
                             <img
-                                src="https://images.unsplash.com/photo-1551952237-954a0e68786c?auto=format&fit=crop&q=80"
+                                src={getOptimizedUrl("https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")}
                                 alt="Stadium Atmosphere"
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             />

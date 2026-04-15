@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+[class*="same-"], 
+[id*="same-"], 
+[data-vercel-toolbar],
+#same-toolbar-root,
+.same-runtime-widget {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
 :root {
   /* Material Design Color Palette */
   --md-primary: #1976D2;

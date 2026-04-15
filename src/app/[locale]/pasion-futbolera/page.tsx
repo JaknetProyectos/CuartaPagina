@@ -6,6 +6,7 @@ import { useQuotes } from "@/hooks/useCotizaciones";
 import { Loader2, CheckCircle, Send, Trophy, ArrowRight, Star } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from 'next-intl';
+import { getOptimizedUrl } from "@/lib/images";
 
 export default function FootballRequestPage() {
     const t = useTranslations('FootballRequest');
@@ -71,7 +72,7 @@ export default function FootballRequestPage() {
                             {/* IMAGEN IZQUIERDA (BALÓN) */}
                             <div className="md:col-span-2 h-72 md:h-[400px] relative overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80"
+                                    src={getOptimizedUrl("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")}
                                     alt="Estadio Experiencia"
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />

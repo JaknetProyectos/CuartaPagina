@@ -1,5 +1,6 @@
 "use client";
 
+import { getOptimizedUrl } from "@/lib/images";
 import { Globe2Icon } from "lucide-react";
 import { useTranslations } from 'next-intl';
 
@@ -22,7 +23,7 @@ export default function ConocenosSection() {
             
             <div className="relative w-full h-[450px] lg:h-[550px] rounded-[1.8rem] overflow-hidden shadow-2xl border border-white/10">
               <img
-                src="https://images.unsplash.com/photo-1653661279002-692227e35f0f?q=80&w=774&auto=format&fit=crop"
+                src={getOptimizedUrl("https://images.unsplash.com/photo-1512442827816-8e5a088619c9?q=80&w=835&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")}
                 alt={t('image_alt')}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="eager"

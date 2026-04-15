@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   allowedDevOrigins: ["*.preview.same-app.com"],
+  productionBrowserSourceMaps: true,
   images: {
     unoptimized: true,
     // Nota: 'domains' está deprecated en versiones nuevas, 

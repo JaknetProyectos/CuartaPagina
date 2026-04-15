@@ -14,25 +14,25 @@ export default function HeroSection() {
     {
       name: "Oaxaca",
       slug: "exp-012",
-      image: getOptimizedUrl("https://images.unsplash.com/photo-1660670173026-ec491dd3dd1a?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+      image: getOptimizedUrl("https://images.unsplash.com/photo-1562869929-bda0650edb1f?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
       label: t('labels.culture')
     },
     {
       name: "Los Cabos",
       slug: "exp-007",
-      image: getOptimizedUrl("https://images.unsplash.com/photo-1587673461694-f0b160bef05c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+      image: getOptimizedUrl("https://images.unsplash.com/photo-1743779035999-2e6073d3ac35?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
       label: t('labels.luxury')
     },
     {
       name: "Xochimilco",
       slug: "exp-002",
-      image: getOptimizedUrl("https://images.unsplash.com/photo-1564762332974-5bf63a654c9d?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+      image: getOptimizedUrl("https://images.unsplash.com/photo-1722890950019-6de4f48b1ad9?q=80&w=327&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
       label: t('labels.magic')
     },
     {
       name: "Querétaro",
       slug: "exp-008",
-      image: getOptimizedUrl("https://images.unsplash.com/photo-1591933733584-bf9577821973?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+      image: getOptimizedUrl("https://plus.unsplash.com/premium_photo-1697730138648-c20787552d1f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
       label: t('labels.history')
     }
   ];

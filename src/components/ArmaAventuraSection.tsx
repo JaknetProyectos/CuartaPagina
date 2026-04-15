@@ -42,7 +42,7 @@ export default function ArmaAventuraSection() {
             <div className="relative p-2 rounded-[2.5rem] bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl -rotate-2 group-hover:rotate-0 transition-transform duration-500">
               <div className="relative w-full h-[350px] lg:h-[450px] rounded-[2rem] overflow-hidden">
                 <img
-                  src="https://plus.unsplash.com/premium_photo-1679669192872-1733bfda6df2?q=80&w=387&auto=format&fit=crop"
+                  src="https://plus.unsplash.com/premium_photo-1661293924422-b1436fd57080?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt={t('image_alt')}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="eager"

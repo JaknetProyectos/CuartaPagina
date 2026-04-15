@@ -1,7 +1,8 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { CartProvider } from "@/context/cartContext";
-import ClientBody from "./ClientBody"; 
+import {CartProvider} from "@/context/cartContext";
+import React from 'react';
+import ClientBody from "./ClientBody";
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
@@ -24,14 +25,12 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <body suppressHydrationWarning className="antialiased font-work-sans bg-[#0d0221]">
-      <NextIntlClientProvider messages={messages} locale={locale}>
-        <CartProvider>
-          <ClientBody>
-            {children}
-          </ClientBody>
-        </CartProvider>
-      </NextIntlClientProvider>
-    </body>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <CartProvider>
+        <ClientBody>
+          {children}
+        </ClientBody>
+      </CartProvider>
+    </NextIntlClientProvider>
   );
 }

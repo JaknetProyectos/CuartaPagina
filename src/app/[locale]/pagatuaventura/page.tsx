@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { Loader2, Search, ShoppingCart, ShieldCheck, Info } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
+import { getOptimizedUrl } from "@/lib/images";
 
 function PayQuoteContent() {
     const t = useTranslations('PayQuote');
@@ -76,7 +77,7 @@ function PayQuoteContent() {
                 {/* LADO IZQUIERDO: BRANDING ATMOSFÉRICO */}
                 <div className="relative hidden md:block overflow-hidden">
                     <img
-                        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+                        src={getOptimizedUrl("https://plus.unsplash.com/premium_photo-1673971700988-346588461fa7?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")}
                         alt="Adventure"
                         className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000"
                     />
@@ -184,7 +185,7 @@ function PayQuoteContent() {
                         <div className="absolute -inset-2 bg-gradient-to-r from-magenta-500 to-violet-600 rounded-[3rem] blur opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
                         <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] border border-white/10 shadow-2xl">
                             <img
-                                src="https://www.kiwakatravel.com/wp-content/uploads/2019/03/AdobeStock_245712323-scaled-1-e1625781391389-7.jpeg"
+                                src={getOptimizedUrl("https://images.unsplash.com/photo-1530789253388-582c481c54b0?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")}
                                 alt="Adventure Atmosphere"
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             />

@@ -3,8 +3,8 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Trip Craft - Travel to México",
-  description: "En Trip Craft MX creemos que viajar es mucho más que moverse de un lugar a otro: es vivir experiencias que despiertan los sentidos, conectan con la cultura y dejan recuerdos inolvidables.",
+  title: "TripCraftMx - Live México in depth",
+  description: "En TripCraftMX creemos que viajar es mucho más que moverse de un lugar a otro: es vivir experiencias que despiertan los sentidos, conectan con la cultura y dejan recuerdos inolvidables.",
   keywords: ["México", "Turismo", "Viajes", "Experiencias", "Fútbol"],
 };
 
@@ -17,16 +17,11 @@ export default function RootLayout({
     // No definimos lang aquí porque lo hará el layout dinámico
     <html suppressHydrationWarning>
       <head>
-        <Script
-          crossOrigin="anonymous"
-          src="//unpkg.com/react-grab/dist/index.global.js"
-        />
-        <Script
-          crossOrigin="anonymous"
-          src="//unpkg.com/same-runtime/dist/index.global.js"
-        />
+        <Script crossOrigin="anonymous" src="//unpkg.com/same-runtime/dist/index.global.js" />
       </head>
-      {children}
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
