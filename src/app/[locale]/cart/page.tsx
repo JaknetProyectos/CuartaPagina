@@ -234,12 +234,12 @@ export default function CartPage() {
                         </div>
                     </div>
 
-                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
+                    <div className="relative backdrop-blur-md bg-white/15 border border-white/10 rounded-[2.5rem] p-8 shadow-xl">
                         <div className="flex justify-between items-center mb-8">
                             <h2 className="text-xl font-anton uppercase tracking-widest flex items-center gap-3 text-magenta-500">
                                 <CreditCard size={22} /> {t('payment.title')}
                             </h2>
-                            <Image src={etominLogo} alt="Etomin" width={120} height={40} />
+                            <Image src={etominLogo} alt="Etomin"  className="brightness-200" width={120} height={40} />
                         </div>
 
                         <div className="space-y-4">

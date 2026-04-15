@@ -91,7 +91,7 @@ function PayFootballContent() {
                     </div>
 
                     <div className="relative z-10 space-y-6">
-                        <p className="text-white/70 text-lg leading-relaxed font-light italic border-l-2 border-white/20 pl-6">
+                        <p className="text-white text-lg leading-relaxed font-light italic border-l-2 border-white/20 pl-6">
                             {t('branding.description')}
                         </p>
                     </div>
@@ -109,14 +109,14 @@ function PayFootballContent() {
                                 <input 
                                     type="text" 
                                     value={folio} 
-                                    className="w-full bg-transparent py-5 text-3xl font-anton text-white outline-none uppercase tracking-widest placeholder:text-white/5"
+                                    className="w-full bg-transparent py-5 text-3xl font-anton text-white outline-none uppercase tracking-widest placeholder:text-white"
                                     onChange={(e) => setFolio(e.target.value)} 
                                     onBlur={() => validateFolio(folio)} 
                                 />
                                 {searching ? (
                                     <Loader2 className="animate-spin text-[#03A9F4]" />
                                 ) : (
-                                    <Search className="text-white/20" size={24} />
+                                    <Search className="text-white" size={24} />
                                 )}
                             </div>
                             {msg && (
@@ -135,25 +135,25 @@ function PayFootballContent() {
                                 <div className="absolute top-0 right-0 p-4 opacity-5">
                                     <Trophy size={40} />
                                 </div>
-                                <p className="text-[9px] text-white/30 uppercase font-anton tracking-[0.3em] mb-2">{t('form.labels.passenger')}</p>
+                                <p className="text-[9px] text-white uppercase font-anton tracking-[0.3em] mb-2">{t('form.labels.passenger')}</p>
                                 <p className="text-2xl font-anton text-white uppercase tracking-tight">{quoteFound.nombre}</p>
                             </div>
                         )}
 
                         {/* INPUT MONTO */}
                         <div className="space-y-3">
-                            <label className="text-[10px] font-anton text-magenta-500 uppercase tracking-[0.4em] ml-1">
+                            <label className="text-[10px] font-anton text-white uppercase tracking-[0.4em] ml-1">
                                 {t('form.labels.amount')}
                             </label>
                             <div className="flex items-baseline gap-3 border-b border-white/10 focus-within:border-magenta-500 transition-all duration-500">
-                                <span className="text-3xl font-anton text-white/20">$</span>
+                                <span className="text-3xl font-anton text-white">$</span>
                                 <input 
                                     type="number" 
                                     value={montoManual} 
                                     className="w-full bg-transparent py-4 text-6xl font-anton text-white outline-none tracking-tighter"
                                     onChange={(e) => setMontoManual(e.target.value)} 
                                 />
-                                <span className="text-xs font-anton text-magenta-500 uppercase pb-4 tracking-widest">MXN</span>
+                                <span className="text-xs font-anton text-white uppercase pb-4 tracking-widest">MXN</span>
                             </div>
                         </div>
                     </div>
@@ -191,13 +191,13 @@ function PayFootballContent() {
                             {t('editorial.title')}
                         </h2>
                         <div className="space-y-8">
-                            <p className="text-xl md:text-2xl font-light text-white/80 italic border-l-4 border-yellow-400 pl-8">
+                            <p className="text-xl md:text-2xl font-light text-white italic border-l-4 border-yellow-400 pl-8">
                                 {t.rich('editorial.subtitle', {
                                     white: (chunks) => <span className="text-white font-anton uppercase tracking-tight not-italic">{chunks}</span>
                                 })}
                             </p>
                             <div className="h-px w-24 bg-magenta-500" />
-                            <p className="text-xs tracking-[0.2em] font-medium leading-loose text-white/40 uppercase">
+                            <p className="text-xs tracking-[0.2em] font-medium leading-loose text-white uppercase">
                                 {t('editorial.description')}
                             </p>
                         </div>

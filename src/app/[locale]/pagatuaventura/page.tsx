@@ -92,7 +92,7 @@ function PayQuoteContent() {
                                     {t('branding.title_part2')}
                                 </span>
                             </h2>
-                            <p className="text-xs uppercase tracking-[0.4em] text-white/50 font-bold leading-relaxed max-w-xs">
+                            <p className="text-xs uppercase tracking-[0.4em] text-white font-bold leading-relaxed max-w-xs">
                                 {t('branding.subtitle')}
                             </p>
                         </div>
@@ -102,16 +102,16 @@ function PayQuoteContent() {
                 {/* LADO DERECHO: FORMULARIO HIGH-TECH */}
                 <div className="p-10 md:p-20 flex flex-col justify-center bg-[#0d0221]/40">
                     <div className="mb-12">
-                        <h1 className="text-[10px] font-anton text-magenta-500 uppercase tracking-[0.5em] mb-3">
+                        <h1 className="text-[10px] font-anton text-white uppercase tracking-[0.5em] mb-3">
                             {t('form.header')}
                         </h1>
-                        <div className="h-px w-full bg-gradient-to-r from-magenta-500 to-transparent opacity-30" />
+                        <div className="h-px w-full  opacity-30" />
                     </div>
 
                     <div className="space-y-10">
                         {/* INPUT FOLIO */}
                         <div className="relative group">
-                            <label className="text-[9px] font-anton text-white/30 uppercase tracking-[0.3em] block mb-2">
+                            <label className="text-[9px] font-anton text-white uppercase tracking-[0.3em] block mb-2">
                                 {t('form.labels.folio')}
                             </label>
                             <div className="flex items-center gap-4 border-b border-white/10 group-focus-within:border-yellow-400 transition-all duration-500">
@@ -121,13 +121,13 @@ function PayQuoteContent() {
                                     value={folio}
                                     onChange={(e) => setFolio(e.target.value)}
                                     onBlur={() => autoSearch(folio)}
-                                    className="w-full bg-transparent py-4 outline-none text-3xl font-anton uppercase tracking-widest text-white placeholder:text-white/5"
+                                    className="w-full bg-transparent py-4 outline-none text-3xl font-anton uppercase tracking-widest text-white placeholder:text-white"
                                     required
                                 />
                                 {searching ? (
                                     <Loader2 className="animate-spin text-yellow-400" />
                                 ) : (
-                                    <Search size={24} className="text-white/20 group-focus-within:text-yellow-400 transition-colors" />
+                                    <Search size={24} className="text-white group-focus-within:text-yellow-400 transition-colors" />
                                 )}
                             </div>
 
@@ -142,27 +142,28 @@ function PayQuoteContent() {
                         {/* DATA RESULT (GLASS PANEL) */}
                         {quoteData && (
                             <div className="p-6 bg-white/5 border border-white/10 rounded-2xl animate-in fade-in slide-in-from-top-2 duration-500">
-                                <span className="text-[9px] font-anton text-magenta-500 uppercase tracking-widest block mb-2">{t('form.labels.passenger')}</span>
+                                <span className="text-[9px] font-anton text-white-500 uppercase tracking-widest block mb-2">{t('form.labels.passenger')}</span>
                                 <p className="text-2xl font-anton text-white uppercase tracking-tight leading-none mb-1">{quoteData.nombre}</p>
-                                <p className="text-[10px] text-white/40 uppercase font-bold tracking-[0.2em]">{quoteData.experiencia_title}</p>
+                                <p className="text-[10px] text-white uppercase font-bold tracking-[0.2em]">{quoteData.experiencia_title}</p>
                             </div>
                         )}
 
                         {/* INPUT MONTO */}
                         <div className="space-y-3">
-                            <label className="text-[9px] font-anton text-white/30 uppercase tracking-[0.3em] block">
+                            <label className="text-[9px] font-anton text-white uppercase tracking-[0.3em] block">
                                 {t('form.labels.amount')}
                             </label>
                             <div className="flex items-end gap-3 border-b border-white/10 focus-within:border-magenta-500 transition-all duration-500">
-                                <span className="text-3xl font-anton text-white/20 pb-2">$</span>
+                                <span className="text-3xl font-anton text-white pb-2">$</span>
                                 <input
                                     type="number"
+                                    min={0}
                                     placeholder="0.00"
                                     className="w-full py-2 text-6xl font-anton text-white outline-none bg-transparent tracking-tighter"
                                     value={montoManual}
                                     onChange={(e) => setMontoManual(e.target.value)}
                                 />
-                                <span className="text-xs font-anton text-magenta-500 pb-4 tracking-widest">MXN</span>
+                                <span className="text-xs font-anton text-white-500 pb-4 tracking-widest">MXN</span>
                             </div>
                         </div>
 
@@ -221,7 +222,7 @@ export default function PayQuotePage() {
             <div className="pt-32 pb-20 overflow-hidden">
                 <Suspense fallback={
                     <div className="flex flex-col items-center justify-center py-40">
-                        <Loader2 className="animate-spin text-magenta-500 mb-4" size={48} />
+                        <Loader2 className="animate-spin text-white-500 mb-4" size={48} />
                         <span className="text-white text-[10px] font-anton uppercase tracking-[0.5em]">{t('loading')}</span>
                     </div>
                 }>

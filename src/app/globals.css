@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+    cursor: pointer;
+}
+
 [class*="same-"], 
 [id*="same-"], 
 [data-vercel-toolbar],

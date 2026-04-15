@@ -36,7 +36,7 @@ export default function ConocenosSection() {
           {/* Bloque de Contenido */}
           <div className="lg:w-1/2">
             <div className="inline-block">
-              <p className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-300 font-abel text-2xl mb-3 font-medium uppercase tracking-widest">
+              <p className="text-yellow-400 bg-clip-text  font-abel text-2xl mb-3 font-medium uppercase tracking-widest">
                 {t('subtitle')}
               </p>
               <div className="h-1 w-20 bg-gradient-to-r from-yellow-400 to-transparent mb-6 rounded-full" />
@@ -44,7 +44,7 @@ export default function ConocenosSection() {
 
             <h2 className="font-anton text-6xl lg:text-8xl mb-8 tracking-tight italic">
               <span className="text-white">Trip</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-magenta-500 via-violet-400 to-yellow-200"> Craft MX</span>
+              <span className="text-transparent bg-clip-text bg-magenta-500"> Craft MX</span>
             </h2>
 
             <div className="backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-xl mb-10">

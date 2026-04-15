@@ -64,7 +64,7 @@ export default function AdventurePlannerSection() {
                         className="w-full h-full bg-cover bg-center bg-no-repeat opacity-40 scale-105"
                         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')" }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0d0221] via-[#0d0221]/80 to-[#0d0221]" />
+                    <div className="absolute inset-0 bg-[#0d0221]" />
                 </div>
 
                 {/* MODAL SUCCESS (GLASSMORPHISM) */}
@@ -74,7 +74,7 @@ export default function AdventurePlannerSection() {
                         <div className="relative bg-white w-full max-w-md overflow-hidden rounded-[2.5rem] shadow-2xl animate-in fade-in zoom-in-95 duration-300">
                             <div className="h-3 w-full bg-gradient-to-r from-magenta-500 to-violet-600" />
                             <div className="p-10 text-center">
-                                <button onClick={() => setShowModal(false)} className="absolute top-6 right-6 text-gray-400 hover:text-magenta-500 transition-colors"><X size={24} /></button>
+                                <button onClick={() => setShowModal(false)} className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors"><X size={24} /></button>
                                 <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner"><CheckCircle size={40} /></div>
                                 <h3 className="text-2xl font-anton uppercase tracking-tight text-[#0d0221] mb-2">{t('modal.title')}</h3>
                                 <p className="text-sm text-gray-500 mb-8 font-medium px-4">{t('modal.description')}</p>

@@ -60,7 +60,7 @@ export default function FootballRequestPage() {
                         </div>
                         <h1 className="text-6xl md:text-8xl font-anton uppercase tracking-tighter text-white leading-[0.85]">
                             {t('hero.title_part1')} <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#03A9F4] to-magenta-500">
+                            <span className="text-transparent bg-clip-text bg-[#03A9F4]">
                                 {t('hero.title_part2')}
                             </span>
                         </h1>
@@ -95,12 +95,12 @@ export default function FootballRequestPage() {
                                     </div>
                                     <h3 className="text-4xl md:text-5xl font-anton uppercase tracking-tighter text-white leading-none">
                                         {t('card.title_part1')} <br />
-                                        <span className="text-white/40">{t('card.title_part2')}</span>
+                                        <span className="text-white/80">{t('card.title_part2')}</span>
                                     </h3>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <p className="text-base md:text-lg text-white/60 font-light leading-relaxed border-l-2 border-[#03A9F4]/30 pl-8">
+                                    <p className="text-base md:text-lg text-white font-light leading-relaxed border-l-2 border-[#03A9F4]/30 pl-8">
                                         {t.rich('card.description', {
                                             bold: (chunks) => <span className="text-white font-anton uppercase tracking-tight italic">{chunks}</span>,
                                             br: () => <br/>
@@ -120,19 +120,19 @@ export default function FootballRequestPage() {
                                 <form onSubmit={handleSubmit} className="space-y-10">
                                     <div className="grid md:grid-cols-2 gap-8">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-anton text-white/30 uppercase tracking-[0.3em] ml-4">{t('form.labels.name')}</label>
+                                            <label className="text-[10px] font-anton text-white uppercase tracking-[0.3em] ml-4">{t('form.labels.name')}</label>
                                             <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-[#03A9F4] transition-all"
                                                 onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-anton text-white/30 uppercase tracking-[0.3em] ml-4">{t('form.labels.email')}</label>
+                                            <label className="text-[10px] font-anton text-white uppercase tracking-[0.3em] ml-4">{t('form.labels.email')}</label>
                                             <input required type="email"  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-[#03A9F4] transition-all"
                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                                         </div>
                                     </div>
                                     
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-anton text-white/30 uppercase tracking-[0.3em] ml-4">{t('form.labels.details')}</label>
+                                        <label className="text-[10px] font-anton text-white uppercase tracking-[0.3em] ml-4">{t('form.labels.details')}</label>
                                         <textarea required rows={4}  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-[#03A9F4] resize-none transition-all"
                                             onChange={(e) => setFormData({ ...formData, detalles: e.target.value })} />
                                     </div>
@@ -142,7 +142,7 @@ export default function FootballRequestPage() {
                                     </button>
 
                                     <div className="mt-12 text-center border-t border-white/5 pt-10">
-                                        <p className="text-[9px] text-white/20 uppercase tracking-[0.4em] mb-4 font-bold">
+                                        <p className="text-[9px] text-white uppercase tracking-[0.4em] mb-4 font-bold">
                                             {t('form.footer.question')}
                                         </p>
                                         <Link href={"/pasion-futbolera-experiencia-total"}>

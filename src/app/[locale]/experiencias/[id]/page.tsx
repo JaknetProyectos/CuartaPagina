@@ -71,7 +71,7 @@ export default function ExperienceDetailPage() {
                                 className="w-full h-[500px] object-cover cursor-pointer transition-transform duration-700 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0d0221]/60 to-transparent pointer-events-none" />
-                            <button 
+                            <button
                                 onClick={() => setGalleryOpen(true)}
                                 className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-full hover:bg-magenta-500 transition-colors"
                             >
@@ -85,9 +85,8 @@ export default function ExperienceDetailPage() {
                                     key={i}
                                     src={img}
                                     onClick={() => setSelectedImage(i)}
-                                    className={`h-24 w-24 flex-shrink-0 object-cover rounded-2xl cursor-pointer border-2 transition-all ${
-                                        selectedImage === i ? "border-magenta-500 scale-105 shadow-[0_0_15px_rgba(255,0,255,0.4)]" : "border-white/10 opacity-50 hover:opacity-100"
-                                    }`}
+                                    className={`h-24 w-24 flex-shrink-0 object-cover rounded-2xl cursor-pointer border-2 transition-all ${selectedImage === i ? "border-magenta-500 scale-105 shadow-[0_0_15px_rgba(255,0,255,0.4)]" : "border-white/10 opacity-50 hover:opacity-100"
+                                        }`}
                                 />
                             ))}
                         </div>
@@ -174,7 +173,7 @@ export default function ExperienceDetailPage() {
                             <div className="relative group">
                                 <div className="absolute -inset-1 bg-gradient-to-r from-magenta-500 to-violet-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                                 <div className="relative backdrop-blur-2xl bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-2xl space-y-8">
-                                    
+
                                     <div className="flex justify-between items-end">
                                         <div>
                                             <p className="text-[10px] text-magenta-500 font-anton uppercase tracking-[0.3em] mb-1">{t('purchase_card.price_from')}</p>
@@ -188,14 +187,14 @@ export default function ExperienceDetailPage() {
                                     <div className="grid grid-cols-1 gap-6 pt-6 border-t border-white/10">
                                         <div className="space-y-3">
                                             <label className="text-xs font-anton text-yellow-400 uppercase tracking-widest flex items-center gap-2">
-                                                <Calendar size={14} /> {t('purchase_card.labels.date')}
+                                                <Calendar size={14} color="#FFFFFF" /> {t('purchase_card.labels.date')}
                                             </label>
                                             <input
                                                 type="date"
                                                 min={new Date().toISOString().split('T')[0]}
                                                 value={selection.fecha}
                                                 onChange={(e) => setSelection({ ...selection, fecha: e.target.value })}
-                                                className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl focus:border-magenta-500 text-white font-medium outline-none transition-all"
+                                                className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl focus:border-magenta-500 text-white font-medium outline-none transition-all scheme-dark"
                                             />
                                         </div>
 
@@ -225,11 +224,10 @@ export default function ExperienceDetailPage() {
 
                                         <button
                                             onClick={handleAddToCart}
-                                            className={`w-full py-5 rounded-2xl font-anton uppercase tracking-widest text-lg transition-all flex items-center justify-center gap-3 ${
-                                                addedToCart
-                                                ? "bg-green-500 text-white"
-                                                : "bg-gradient-to-r from-magenta-600 to-violet-600 hover:shadow-[0_0_25px_rgba(255,0,255,0.4)] text-white shadow-lg"
-                                            }`}
+                                            className={`w-full py-5 rounded-2xl font-anton uppercase tracking-widest text-lg transition-all flex items-center justify-center gap-3 ${addedToCart
+                                                    ? "bg-green-500 text-white"
+                                                    : "bg-gradient-to-r from-magenta-600 to-violet-600 bg-[#d0197b] text-white shadow-lg"
+                                                }`}
                                         >
                                             {addedToCart ? (
                                                 <><Check /> {t('purchase_card.buttons.added')}</>

@@ -30,8 +30,8 @@ export default function Footer() {
           {/* Brand & Language Switcher */}
           <div className="md:col-span-1 space-y-8">
             <div className="flex items-center gap-2 group cursor-default">
-              <span className="font-anton italic uppercase tracking-tighter text-3xl transition-transform group-hover:skew-x-[-10deg] duration-300">
-                Trip <span className="text-transparent bg-clip-text bg-gradient-to-r from-magenta-500 to-yellow-400">Craft MX</span>
+              <span className="font-anton uppercase tracking-tighter text-3xl transition-transform group-hover:skew-x-[-10deg] duration-300">
+                Trip Craft MX
               </span>
             </div>
             <p className="text-white/40 text-[10px] leading-relaxed uppercase tracking-[0.2em] font-bold">
@@ -120,7 +120,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/5 mt-20 pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20">
+          <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white">
             {t('copyright', { year: 2026 })}
           </p>
           <div className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.5em] text-magenta-500/40 hover:text-magenta-500 transition-colors cursor-default">
