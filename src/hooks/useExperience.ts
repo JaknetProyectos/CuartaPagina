@@ -47,6 +47,7 @@ export function useExperience(id?: string, slug?: string) {
                     priceFormatted: rawData.price_formatted,
                     image: rawData.image,
                     category: rawData.category,
+                    title_english: rawData.title_english ?? "",
                     images: rawData.images || [],
                     rating: rawData.rating,
                     reviewCount: rawData.review_count,

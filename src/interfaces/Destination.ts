@@ -3,6 +3,7 @@ export interface Destination {
   slug: string;
   name: string;
   short_description: string;
+  title_english: string;
   description: string;
   hero_image: string;
   card_image: string;

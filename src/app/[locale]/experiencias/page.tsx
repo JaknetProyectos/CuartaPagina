@@ -9,12 +9,14 @@ import { useState } from "react";
 import Loading from "@/components/Loading";
 import Image from "next/image";
 import { getOptimizedUrl } from "@/lib/images";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function ExperiencesPage() {
     const t = useTranslations('Experiences');
     const params = useParams();
     const [page, setPage] = useState(1);
+
+    const locale = useLocale()
 
     const {
         data,
@@ -99,18 +101,25 @@ export default function ExperiencesPage() {
                                             {t("tax_included")} (16%)
                                         </p>
                                     </div>
+
+
                                 </div>
 
                                 {/* Texto Inferior */}
                                 <div className="space-y-4 px-4">
                                     <h2 className="font-anton text-3xl uppercase tracking-tight text-white group-hover:text-yellow-400 transition-colors duration-300 leading-none">
-                                        {exp.title}
+                                        {locale === "es" ? exp.title : exp.title_english}
                                     </h2>
 
                                     <p className="text-white/50 text-sm line-clamp-2 font-light leading-relaxed">
                                         {exp.description}
                                     </p>
 
+                                    <button
+                                        className="w-full py-5 rounded-2xl font-anton uppercase tracking-widest text-lg transition-all flex items-center justify-center gap-3 bg-gradient-to-r from-magenta-600 to-violet-600 bg-[#d0197b] text-white shadow-lg"
+                                    >
+                                        {t("booknow")}
+                                    </button>
                                 </div>
                             </Link>
                         ))}

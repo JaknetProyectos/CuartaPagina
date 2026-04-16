@@ -105,6 +105,7 @@
     "notice_description": "El servicio de experiencia <bold>no contempla traslados desde o hacia el punto de encuentro</bold>. En caso de ser requerido, dicho transporte deberá ser coordinado y cubierto de forma independiente por el cliente. La empresa no se responsabiliza por demoras, contratiempos o erogaciones derivadas de servicios de transporte externos.",
     "title": "Aventuras Extraordinarias",
     "from_label": "Desde",
+    "booknow" : "Reservar ahora",
     "tax_included": "IVA incluido",
     "empty_state": "No hay experiencias disponibles para este destino actualmente",
     "error_message": "Error al sincronizar datos",

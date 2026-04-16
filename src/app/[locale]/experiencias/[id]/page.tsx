@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import { Calendar, Check, ChevronLeft, ChevronRight, ShoppingCart, Users, X, MapPin, Clock, Tag } from "lucide-react";
 import { useCart } from "@/context/cartContext";
 import Loading from "@/components/Loading";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function ExperienceDetailPage() {
     const t = useTranslations('ExperienceDetail');
@@ -16,6 +16,7 @@ export default function ExperienceDetailPage() {
     const id = params.id as string;
     const { addToCart } = useCart();
     const { data, loading, error } = useExperience(id);
+    const locale = useLocale()
 
     const [selectedImage, setSelectedImage] = useState(0);
     const [galleryOpen, setGalleryOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function ExperienceDetailPage() {
         }
         addToCart({
             experienceId: data.id,
-            title: data.title,
+            title: locale === "es" ? data.title : data.title_english,
             destinationName: data.destinationName ?? "",
             price: Number(data.price),
             personas: selection.personas,
@@ -153,7 +154,7 @@ export default function ExperienceDetailPage() {
                         <div className="sticky top-32 space-y-8">
                             <div>
                                 <h1 className="text-5xl md:text-6xl font-anton uppercase leading-none tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                                    {data.title}
+                                    {locale === "es" ? data.title : data.title_english}
                                 </h1>
 
                                 <div className="flex flex-wrap gap-4 items-center mb-6">

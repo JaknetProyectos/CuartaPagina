@@ -10,6 +10,7 @@ export interface Experience {
   images: string[];
   image: string;
   category: string;
+  title_english: string;
   rating: number;
   reviewCount?: number;
   slug?: string;

@@ -65,6 +65,7 @@ export function useExperiences(options: UseExperiencesOptions = {}) {
           images: e.images || [e.image],
           priceFormatted: e.price_formatted,
           reviewCount: e.review_count,
+          title_english: e.title_english ?? "",
         }));
 
         setState({
