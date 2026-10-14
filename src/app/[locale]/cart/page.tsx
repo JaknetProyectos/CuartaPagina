@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 import { checkout } from "@/lib/cart";
 import { useState, useMemo } from "react";
 import { CreditCard, CheckCircle, MapPin, AlertTriangle, X, Trash2, Calendar, Users, ShieldCheck, Loader2, Beaker } from "lucide-react";
-import etominLogo from "@/public/etomin.png"
-import securePayment from "@/public/secure-payment.png"
+
+
 import Image from "next/image";
 import { EmptyCart } from "@/components/EmptyCart";
 import { useTranslations } from 'next-intl';
@@ -239,7 +239,7 @@ export default function CartPage() {
                             <h2 className="text-xl font-anton uppercase tracking-widest flex items-center gap-3 text-magenta-500">
                                 <CreditCard size={22} /> {t('payment.title')}
                             </h2>
-                            <Image src={etominLogo} alt="Etomin"  className="brightness-200" width={120} height={40} />
+                            <Image src="/keycop.webp" alt="Etomin"  className="brightness-0 invert" width={120} height={40} />
                         </div>
 
                         <div className="space-y-4">

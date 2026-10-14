@@ -1,5 +1,6 @@
 'use server';
-import etomin from '@api/etomin';
+
+import axios from 'axios';
 
 interface PaymentData {
     amount: number;
@@ -18,86 +19,101 @@ interface PaymentData {
         cp: string;
     };
     orderId: string;
+    redirectUrl?: string; // Opcional por si lo necesitas más adelante
+}
+
+const API_URL = "https://pagos.keycop.com.mx/api/v1";
+
+async function getAuthToken() {
+    const { data } = await axios.post(`${API_URL}/signin`, {
+        email: process.env.KEYCOP_EMAIL || process.env.ETOMIN_USER,
+        password: process.env.KEYCOP_PASSWORD || process.env.ETOMIN_PASSWORD
+    });
+
+    return data.authToken;
+}
+
+async function tokenizeCard(token: string, payment: PaymentData) {
+    const card = payment.cardData;
+
+    const { data } = await axios.post(`${API_URL}/card/tokenizer`, {
+        cardData: {
+            cardNumber: card.number.replace(/\s/g, ''),
+            cardholderName: card.name,
+            expirationYear: card.year,
+            expirationMonth: card.month
+        }
+    }, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+
+    return data.cardNumberToken;
 }
 
 export async function processEtominPayment(payment: PaymentData) {
     try {
-        // 1. Autenticación con Etomin (Credenciales desde .env)
-        const authResponse = await etomin.postSignin({
-            email: process.env.ETOMIN_USER,
-            password: process.env.ETOMIN_PASSWORD
-        });
+        const authToken = await getAuthToken();
+        const cardToken = await tokenizeCard(authToken, payment);
 
-        const token = authResponse.data.authToken;
+        // Separar nombre y apellido del formato de Etomin
+        const nameParts = payment.customer.nombre.trim().split(' ');
+        const firstName = nameParts[0] || 'Cliente';
+        const lastName = nameParts.slice(1).join(' ') || 'N/A';
 
-        if (!token) throw new Error("Error al autenticarse con Etomin");
+        const salePayload = {
+            amount: Number(payment.amount),
+            currency: "484", // Pesos mexicanos (MXN)
+            reference: payment.orderId,
+            redirectUrl: payment.redirectUrl || "",
 
-        etomin.auth(token);
-
-        // 2. Tokenizar la tarjeta
-        const tokenResponse = await etomin.postCardTokenizer({
-            cardData: {
-                cardNumber: payment.cardData.number.replace(/\s/g, ''), // Limpiar espacios
-                cardholderName: payment.cardData.name,
-                expirationYear: payment.cardData.year,
-                expirationMonth: payment.cardData.month
-            }
-        });
-
-        const cardToken = tokenResponse.data.cardNumberToken;
-
-        // 3. Realizar la Venta (Sale)
-        // El código de moneda '484' es para Pesos Mexicanos (MXN)
-        const saleResponse = await etomin.postSale({
-            amount: payment.amount,
             customerInformation: {
-                firstName: payment.customer.nombre.split(' ')[0],
-                lastName: payment.customer.nombre.split(' ').slice(1).join(' ') || 'N/A',
-                middleName: '',
+                firstName,
+                lastName,
                 email: payment.customer.email,
                 phone1: payment.customer.telefono,
-                city: 'Ciudad de México',
                 address1: payment.customer.direccion,
+                address2: "",
+                city: "Ciudad de México",
+                state: "CDMX",
                 postalCode: payment.customer.cp,
-                state: 'CDMX',
-                country: 'MX',
-                ip: '0.0.0.0' // En producción, captura la IP real del cliente
+                country: "MX",
+                company: "",
+                ip: "127.0.0.1",
             },
+
             cardData: {
                 cardNumberToken: cardToken,
-                cvv: payment.cardData.cvv
+                cvv: payment.cardData.cvv,
             },
-            currency: '484',
-            reference: payment.orderId
+        };
+
+        const { data } = await axios.post(`${API_URL}/sale`, salePayload, {
+            headers: { Authorization: `Bearer ${authToken}` }
         });
 
-        // Retornamos la data si el status es aprobado (usualmente 'APPROVED' o '00')
-        return saleResponse.data;
+        console.log("Keycop Response:", data);
+
+        // Validar si fue aprobado directo o si requiere redirección 3DS
+        const isApproved = data.status === "APPROVED";
+        const needsRedirect = data.redirectTo && data.redirectTo !== "";
+
+        return {
+            success: isApproved,
+            needsRedirect,
+            redirectUrl: data.redirectTo || null,
+            orderId: data.orderId || data.reference,
+            reference: data.reference,
+            status: data.status,
+            data: data
+        };
 
     } catch (error: any) {
-        console.error("❌ Error en pasarela Etomin:", error.response?.data || error.message);
-        throw new Error(error.response?.data?.message || "Error al procesar el pago");
+        console.error("Keycop Payment Error (via Etomin wrapper):", error.response?.data || error.message);
+        return {
+            success: false,
+            needsRedirect: false,
+            status: "error",
+            error: error.response?.data?.message || "Error procesando el pago"
+        };
     }
 }
-
-
-
-/**
- * {
-  id: 2422539,
-  reference: 'VMT-312077',
-  amount: 4200,
-  customerEmail: 'mrxd9767@gmail.com',
-  cardNumber: '123456 **** 5678',
-  authorizationNumber: '000000',
-  transactionId: '766003616176275532',
-  responseCode: '00',
-  responseMessage: 'Approved',
-  status: 'APPROVED',
-  mode: 'SANDBOX',
-  orderId: '69cc18975669093b9f3aa277',
-  customer: '69cb1ecbbef3ad849607fc3b',
-  message: 'Aprobado',
-  billingDescriptor: 'GVM*VENDERS'
-}
- */
